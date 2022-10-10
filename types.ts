@@ -18,12 +18,12 @@ export interface Right<T> {
 export type Either<E, T> = Left<E> | Right<T>;
 
 // ✅
-export type Is<T> = (input: unknown) => input is T;
+export type Is<T> = (i: unknown) => i is T;
 
 //----------------------------------------------------------------------------------------------------------------------
 
 // ✅
-export type Validate<Input, T> = (input: Input, context: ValidationContext[]) => Validation<T>;
+export type Validate<I, T> = (i: I, context: ValidationContext[]) => Validation<T>;
 
 // ✅
 export type Validation<T> = Either<ValidationError[], T>;
