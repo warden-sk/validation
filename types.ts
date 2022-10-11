@@ -23,7 +23,7 @@ export type Is<T> = (i: unknown) => i is T;
 //----------------------------------------------------------------------------------------------------------------------
 
 // ✅
-export type Validate<I, T> = (i: I, context: ValidationContext[]) => Validation<T>;
+export type Validate<I, T> = (i: I, c: ValidationContext[]) => Validation<T>;
 
 // ✅
 export type Validation<T> = Either<ValidationError[], T>;
