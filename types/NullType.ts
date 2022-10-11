@@ -1,3 +1,7 @@
+/*
+ * Copyright 2022 Marek Kobida
+ */
+
 import Type from '../Type';
 
 class NullType extends Type<null> {
