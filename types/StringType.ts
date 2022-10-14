@@ -9,7 +9,7 @@ class StringType extends Type<string> {
     super(
       'string',
       (input): input is string => typeof input === 'string',
-      (input, context) => (this.is(input) ? this.right(input) : this.left(input, context))
+      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }]))
     );
   }
 }

@@ -9,7 +9,7 @@ class BooleanType extends Type<boolean> {
     super(
       'boolean',
       (input): input is boolean => typeof input === 'boolean',
-      (input, context) => (this.is(input) ? this.right(input) : this.left(input, context))
+      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }]))
     );
   }
 }

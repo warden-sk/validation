@@ -1,4 +1,4 @@
-import type { Decoder, Is, Validate, Validation, ValidationContext } from './types';
+import type { Decoder, Is, Validate, Validation, ValidationError } from './types';
 import { left, right } from './functions';
 
 class Type<T, I = unknown> implements Decoder<I, T> {
@@ -8,12 +8,12 @@ class Type<T, I = unknown> implements Decoder<I, T> {
     return this.validate(i, [{ input: i, key: '', type: this }]);
   }
 
-  left<T>(value: unknown, context: ValidationContext[]): Validation<T> {
-    return left([{ context, value }]);
+  left<T>(errors: ValidationError[]): Validation<T> {
+    return left(errors);
   }
 
-  right<T>(value: T): Validation<T> {
-    return right(value);
+  right<T>(t: T): Validation<T> {
+    return right(t);
   }
 }
 

@@ -9,7 +9,7 @@ class UndefinedType extends Type<undefined> {
     super(
       'undefined',
       (input): input is undefined => typeof input === 'undefined',
-      (input, context) => (this.is(input) ? this.right(input) : this.left(input, context))
+      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }]))
     );
   }
 }

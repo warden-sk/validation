@@ -36,8 +36,8 @@ export interface ValidationContext {
 // ✅
 export interface ValidationError {
   readonly context: ValidationContext[];
+  readonly input: unknown;
   readonly message?: string;
-  readonly value: unknown;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
