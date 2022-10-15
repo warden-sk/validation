@@ -5,6 +5,8 @@
 import Type from '../Type';
 
 class BooleanType extends Type<boolean> {
+  readonly $: 'BooleanType' = 'BooleanType';
+
   constructor() {
     super(
       'boolean',

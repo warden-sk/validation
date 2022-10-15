@@ -5,6 +5,8 @@
 import Type from '../Type';
 
 class NumberType extends Type<number> {
+  readonly $: 'NumberType' = 'NumberType';
+
   constructor() {
     super(
       'number',

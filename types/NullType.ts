@@ -5,6 +5,8 @@
 import Type from '../Type';
 
 class NullType extends Type<null> {
+  readonly $: 'NullType' = 'NullType';
+
   constructor() {
     super(
       'null',

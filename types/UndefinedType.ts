@@ -5,6 +5,8 @@
 import Type from '../Type';
 
 class UndefinedType extends Type<undefined> {
+  readonly $: 'UndefinedType' = 'UndefinedType';
+
   constructor() {
     super(
       'undefined',

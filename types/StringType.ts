@@ -5,6 +5,8 @@
 import Type from '../Type';
 
 class StringType extends Type<string> {
+  readonly $: 'StringType' = 'StringType';
+
   constructor() {
     super(
       'string',
