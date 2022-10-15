@@ -1,3 +1,5 @@
+import type Type from './Type';
+
 // ✅
 export interface Left<E> {
   readonly $: 'Left';
@@ -29,7 +31,7 @@ export type Validation<T> = Either<ValidationError[], T>;
 // ✅
 export interface ValidationContext {
   readonly input: unknown /* undefined? */;
-  readonly key?: string;
+  readonly key?: number | string;
   readonly type: Decoder<any, any>;
 }
 
@@ -47,7 +49,12 @@ export type Decode<I, T> = (i: I) => Validation<T>;
 
 // ✅
 export interface Decoder<I, T> {
+  readonly $: string;
   readonly decode: Decode<I, T>;
   readonly name: string;
   readonly validate: Validate<I, T>;
 }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+export type TypeOf<Of> = Of extends Type<infer T> ? T : never;
