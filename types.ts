@@ -29,7 +29,7 @@ export type Validation<T> = Either<ValidationError[], T>;
 // ✅
 export interface ValidationContext {
   readonly input: unknown /* undefined? */;
-  readonly key: string;
+  readonly key?: string;
   readonly type: Decoder<any, any>;
 }
 
