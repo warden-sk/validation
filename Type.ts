@@ -2,6 +2,8 @@ import type { Decoder, Is, Validate, Validation, ValidationError } from './types
 import { left, right } from './functions';
 
 class Type<T, I = unknown> implements Decoder<I, T> {
+  readonly $!: string;
+
   constructor(readonly name: string, readonly is: Is<T>, readonly validate: Validate<I, T>) {}
 
   decode(i: I): Validation<T> {
