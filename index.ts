@@ -4,11 +4,49 @@
 
 import ArrayType from './types/ArrayType';
 import StringType from './types/StringType';
-import util from 'util';
+// import util from 'util';
 import InterfaceType from './types/InterfaceType';
+import { isLeft } from './functions';
 
 const l = new InterfaceType({ test: new ArrayType(new StringType()) });
 
-const r = { test: ['marek'] };
+const r = { test: ['marek', 1, 2] };
 
-console.log(util.inspect(l.decode(r), { colors: true, depth: 1337 }));
+const $ = l.decode(r);
+
+if (isLeft($)) {
+  // console.log(util.inspect($, { colors: true, depth: 1337 }));
+
+  const text = ` ${$.left.length} Error(s)`;
+
+  console.log(new Array(process.stdout.columns - text.length + 1).join('\u2014') + text);
+
+  for (const i in $.left) {
+    const { context } = $.left[i];
+
+    console.log([`${+i + 1} Error at`, JSON.stringify(context.map(c => c.key).join('.'))].join(' '));
+
+    console.log(new Array(process.stdout.columns + 1).join('\u2013'));
+
+    const rows = [
+      ['#', 'Name', 'Type', 'Input', 'Key'],
+      ...context.map((c, i) => [`${i + 1}`, c.type.$, c.type.name, JSON.stringify(c.input), c.key]),
+    ];
+
+    const columnLengths: number[] = [];
+    rows.forEach(columns =>
+      columns.forEach((column, i) => (columnLengths[i] ?? 0) < column.length && (columnLengths[i] = column.length))
+    );
+
+    console.log(
+      rows
+        .map(
+          columns =>
+            '\u007C ' + columns.map((column, i) => column.padEnd(columnLengths[i], ' ')).join(' \u007C ') + ' \u007C'
+        )
+        .join('\n')
+    );
+
+    console.log(new Array(process.stdout.columns + 1).join('\u2014'));
+  }
+}
