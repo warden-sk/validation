@@ -2,8 +2,8 @@
  * Copyright 2022 Marek Kobida
  */
 
-import { ArrayType, InterfaceType, StringType } from '.';
 import report from './report';
+import { ArrayType, InterfaceType, StringType } from '.';
 
 const l = new InterfaceType({ test: new ArrayType(new StringType()) });
 

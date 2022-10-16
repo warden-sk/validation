@@ -1,3 +1,7 @@
+/*
+ * Copyright 2022 Marek Kobida
+ */
+
 import type { Validation } from './types';
 import { isLeft, isRight } from './functions';
 
