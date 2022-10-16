@@ -19,7 +19,10 @@ function report(validation: Validation<any>) {
 
       const columnLengths: number[] = [];
       rows.forEach(columns =>
-        columns.forEach((column, i) => (columnLengths[i] ?? 0) < column.length && (columnLengths[i] = column.length))
+        columns.forEach((column, i) => {
+          const columnLength = column.length;
+          return (columnLengths[i] ?? 0) < columnLength && (columnLengths[i] = columnLength);
+        })
       );
 
       console.log(
