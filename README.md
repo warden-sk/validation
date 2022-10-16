@@ -1,3 +1,6 @@
+```typescript
+import { ArrayType } from '@warden-sk/validation';
+```
 # Types
 | # | Type |
 | --- | --- |
