@@ -1,3 +1,7 @@
+/*
+ * Copyright 2022 Marek Kobida
+ */
+
 import type Type from './Type';
 
 // ✅
@@ -57,4 +61,5 @@ export interface Decoder<I, T> {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+// ✅
 export type TypeOf<Of> = Of extends Type<infer T> ? T : never;

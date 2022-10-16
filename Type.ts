@@ -1,3 +1,7 @@
+/*
+ * Copyright 2022 Marek Kobida
+ */
+
 import type { Decoder, Is, Validate, Validation, ValidationError } from './types';
 import { left, right } from './functions';
 

@@ -1,3 +1,7 @@
+/*
+ * Copyright 2022 Marek Kobida
+ */
+
 import type { Either, Left, Right } from './types';
 
 // ✅
