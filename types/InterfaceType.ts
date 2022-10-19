@@ -12,7 +12,7 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
 
   constructor(readonly of: Of) {
     super(
-      `{${Object.keys(of).map(key => `${key}:${of[key].name};`)}}`,
+      `{${Object.keys(of).reduce(($, key) => ($ += `${key}:${of[key].name};`), '')}}`,
       (input): input is { [Key in keyof Of]: TypeOf<Of[Key]> } => {
         if (isObject(input)) {
           for (const key of Object.keys(of)) {

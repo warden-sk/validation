@@ -12,11 +12,11 @@ function report(validation: Validation<any>) {
     for (const i in validation.left) {
       const { context } = validation.left[i];
 
-      console.log([`${+i + 1} Error at`, JSON.stringify(context.map(c => c.key).join('.'))].join(' '));
+      console.log([`${+i + 1} Error at`, `"${context.map(c => c.key).join('.')}"`].join(' '));
 
       const rows = [
         ['#', 'Name', 'Type', 'Input', 'Key'],
-        ...context.map((c, i) => [`${i + 1}`, c.type.$, c.type.name, JSON.stringify(c.input), c.key]),
+        ...context.map((c, i) => [`${i + 1}`, c.type.$, c.type.name, JSON.stringify(c.input ?? ''), c.key]),
       ];
 
       const columnLengths: number[] = [];
