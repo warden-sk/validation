@@ -7,9 +7,7 @@ import { isLeft, isRight } from './functions';
 
 function report(validation: Validation<any>) {
   if (isLeft(validation)) {
-    const text = ` ${validation.left.length} Error(s)`;
-
-    console.log(new Array(process.stdout.columns - text.length + 1).join('─') + text);
+    console.log(`${validation.left.length} Error(s)`);
 
     for (const i in validation.left) {
       const { context } = validation.left[i];
@@ -29,13 +27,37 @@ function report(validation: Validation<any>) {
         })
       );
 
+      function replaceAtIndex(input: string, $: string) {
+        const updatedLengths: number[] = columnLengths
+          .map(
+            (
+              first => columnLength =>
+                (first += columnLength + 3)
+            )(0)
+          )
+          .filter((columnLength, i, columnLengths) => i < columnLengths.length - 1);
+
+        return [...input].reduce(
+          (s, character, i) => (s += updatedLengths.indexOf(i) !== -1 ? (character = $) : character),
+          ''
+        );
+      }
+
+      const WidthOfTable = columnLengths.reduce((n, length) => n + length + 3, 0);
+
+      const TableHeader = replaceAtIndex('╔' + new Array(WidthOfTable).join('═') + '╗', '╤');
+      const TableFooter = replaceAtIndex('╚' + new Array(WidthOfTable).join('═') + '╝', '╧');
+
       console.log(
         [
-          '╔' + new Array(process.stdout.columns - 2 + 1).join('═') + '╗',
-          ...rows.map(
-            columns => '║ ' + columns.map((column, i) => column.padEnd(columnLengths[i], ' ')).join(' │ ') + ' ║'
-          ),
-          '╚' + new Array(process.stdout.columns - 2 + 1).join('═') + '╝',
+          TableHeader,
+          ...rows
+            .flatMap((columns, i) => [
+              '║ ' + columns.map((column, i) => column.padEnd(columnLengths[i], ' ')).join(' │ ') + ' ║',
+              i === rows.length - 1 ? undefined : replaceAtIndex('╟' + new Array(WidthOfTable).join('─') + '╢', '┼'),
+            ])
+            .filter(i => i !== undefined),
+          TableFooter,
         ].join('\n')
       );
     }
