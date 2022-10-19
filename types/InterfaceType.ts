@@ -13,19 +13,8 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
   constructor(readonly of: Of) {
     super(
       `{${Object.keys(of).reduce(($, key) => ($ += `${key}:${of[key].name};`), '')}}`,
-      (input): input is { [Key in keyof Of]: TypeOf<Of[Key]> } => {
-        if (isObject(input)) {
-          for (const key of Object.keys(of)) {
-            if (!of[key].is(input[key])) {
-              return false;
-            }
-          }
-
-          return true;
-        }
-
-        return false;
-      },
+      (input): input is { [Key in keyof Of]: TypeOf<Of[Key]> } =>
+        isObject(input) && Object.keys(of).every(key => of[key].is(input[key])),
       (input, context) => {
         if (isObject(input)) {
           let errors: ValidationError[] = [];
