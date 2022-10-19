@@ -13,17 +13,19 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
   constructor(readonly of: Of) {
     super(
       `{${Object.keys(of).reduce(($, key) => ($ += `${key}:${of[key].name};`), '')}}`,
+      //----------------------------------------------------------------------------------------------------------------
       (input): input is { [Key in keyof Of]: TypeOf<Of[Key]> } =>
         isObject(input) && Object.keys(of).every(key => of[key].is(input[key])),
+      //----------------------------------------------------------------------------------------------------------------
       (input, context) => {
         if (isObject(input)) {
           let errors: ValidationError[] = [];
 
           for (const key of Object.keys(of)) {
-            const $ = of[key].validate(input[key], [...context, { input: input[key], key, type: of[key] }]);
+            const validation = of[key].validate(input[key], [...context, { input: input[key], key, type: of[key] }]);
 
-            if (isLeft($)) {
-              errors = [...errors, ...$.left];
+            if (isLeft(validation)) {
+              errors = [...errors, ...validation.left];
             }
           }
 

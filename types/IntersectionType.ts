@@ -16,15 +16,17 @@ class IntersectionType<Of extends Type<any>[]> extends Type<UnionToIntersection<
   constructor(readonly of: Of) {
     super(
       of.reduce(($, type, i) => ($ += i === 0 ? type.name : ` & ${type.name}`), ''),
+      //----------------------------------------------------------------------------------------------------------------
       (input): input is UnionToIntersection<Test<Of>[number]> => of.every(type => type.is(input)),
+      //----------------------------------------------------------------------------------------------------------------
       (input, context) => {
         let errors: ValidationError[] = [];
 
         for (const key in of) {
-          const $ = of[key].validate(input, [...context, { input: input, key, type: of[key] }]);
+          const validation = of[key].validate(input, [...context, { input: input, key, type: of[key] }]);
 
-          if (isLeft($)) {
-            errors = [...errors, ...$.left];
+          if (isLeft(validation)) {
+            errors = [...errors, ...validation.left];
           }
         }
 

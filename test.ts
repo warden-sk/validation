@@ -15,7 +15,7 @@ const l = new IntersectionType([
   }),
 ]);
 
-const r = { firstName: ['Marek', 0], lastName: 'Kobida' };
+const r = { age: 24, firstName: 'Marek', lastName: 'Kobida' };
 
 const decoded = l.decode(r);
 
