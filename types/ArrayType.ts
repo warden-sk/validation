@@ -12,19 +12,7 @@ class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
   constructor(readonly of: Of) {
     super(
       `${of.name}[]`,
-      (input): input is TypeOf<Of>[] => {
-        if (Array.isArray(input)) {
-          for (const key in input) {
-            if (!of.is(input[key])) {
-              return false;
-            }
-          }
-
-          return true;
-        }
-
-        return false;
-      },
+      (input): input is TypeOf<Of>[] => Array.isArray(input) && input.every(of.is),
       (input, context) => {
         if (Array.isArray(input)) {
           let errors: ValidationError[] = [];
