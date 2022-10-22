@@ -3,19 +3,11 @@
  */
 
 import report from './report';
-import { InterfaceType, IntersectionType, LiteralType, NumberType, StringType } from '.';
+import * as t from '.';
 
-const l = new IntersectionType([
-  new InterfaceType({
-    firstName: new StringType(),
-    lastName: new LiteralType('Kobida'),
-  }),
-  new InterfaceType({
-    age: new NumberType(),
-  }),
-]);
+const l = new t.UnionType([new t.NumberType(), new t.StringType()]);
 
-const r = { age: 24, firstName: 'Marek', lastName: 'Kobida' };
+const r = 1;
 
 const decoded = l.decode(r);
 

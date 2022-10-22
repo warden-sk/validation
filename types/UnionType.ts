@@ -6,16 +6,14 @@ import Type from '../Type';
 import type { TypeOf, ValidationError } from '../types';
 import { isLeft } from '../functions';
 
-type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
-
-class IntersectionType<Of extends Type<any>[]> extends Type<UnionToIntersection<TypeOf<Of>[number]>> {
-  readonly $: 'IntersectionType' = 'IntersectionType';
+class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
+  readonly $: 'UnionType' = 'UnionType';
 
   constructor(readonly of: Of) {
     super(
-      of.reduce(($, type, i) => ($ += i === 0 ? type.name : ` & ${type.name}`), ''),
+      of.reduce(($, type, i) => ($ += i === 0 ? type.name : ` | ${type.name}`), ''),
       //----------------------------------------------------------------------------------------------------------------
-      (input): input is UnionToIntersection<TypeOf<Of>[number]> => of.every(type => type.is(input)),
+      (input): input is TypeOf<Of>[number] => of.some(type => type.is(input)),
       //----------------------------------------------------------------------------------------------------------------
       (input, context) => {
         let errors: ValidationError[] = [];
@@ -25,13 +23,15 @@ class IntersectionType<Of extends Type<any>[]> extends Type<UnionToIntersection<
 
           if (isLeft(validation)) {
             errors = [...errors, ...validation.left];
+          } else {
+            return this.right(input);
           }
         }
 
-        return errors.length > 0 ? this.left(errors) : this.right(input as any);
+        return this.left(errors);
       }
     );
   }
 }
 
-export default IntersectionType;
+export default UnionType;

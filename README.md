@@ -13,3 +13,4 @@ import { ArrayType } from '@warden-sk/validation';
 | 7 | NumberType |
 | 8 | StringType |
 | 9 | UndefinedType |
+| 10 | UnionType |

@@ -51,4 +51,4 @@ export interface Decoder<I, T> {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type TypeOf<Of> = Of extends Type<infer T> ? T : never;
+export type TypeOf<Of> = Of extends Type<infer T>[] ? T[] : Of extends Type<infer T> ? T : never;
