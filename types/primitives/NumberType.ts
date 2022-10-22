@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-import Type from '../Type';
+import Type from '../../Type';
 
 class NumberType extends Type<number> {
   readonly $: 'NumberType' = 'NumberType';
