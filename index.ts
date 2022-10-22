@@ -10,5 +10,6 @@ export { default as LiteralType } from './types/LiteralType';
 export { default as NullType } from './types/NullType';
 export { default as NumberType } from './types/NumberType';
 export { default as StringType } from './types/StringType';
+export { default as TupleType } from './types/TupleType';
 export { default as UndefinedType } from './types/UndefinedType';
 export { default as UnionType } from './types/UnionType';

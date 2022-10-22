@@ -6,7 +6,7 @@ import report from './report';
 import * as t from '.';
 import type { TypeOf } from './types';
 
-const l = new t.UnionType([
+const l = new t.TupleType([
   new t.InterfaceType({
     firstName: new t.StringType(),
   }),

@@ -19,8 +19,8 @@ class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
         if (Array.isArray(input)) {
           let errors: ValidationError[] = [];
 
-          for (const i in input) {
-            const validation = of.validate(input[i], [...context, { input: input[i], key: i, type: of }]);
+          for (const key in input) {
+            const validation = of.validate(input[key], [...context, { input: input[key], key, type: of }]);
 
             if (isLeft(validation)) {
               errors = [...errors, ...validation.left];
