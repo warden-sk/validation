@@ -4,7 +4,7 @@
 
 import Type from '../Type';
 import type { TypeOf, ValidationError } from '../types';
-import { isLeft } from '../functions';
+import { isLeft, isRight } from '../functions';
 
 class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
   readonly $: 'UnionType' = 'UnionType';
@@ -19,11 +19,13 @@ class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
         let errors: ValidationError[] = [];
 
         for (const key in of) {
-          const validation = of[key].validate(input, [...context, { input: input, key, type: of[key] }]);
+          const type = of[key];
 
-          if (isLeft(validation)) {
-            errors = [...errors, ...validation.left];
-          } else {
+          const validation = type.validate(input, [...context, { input, key, type }]);
+
+          isLeft(validation) && (errors = [...errors, ...validation.left]);
+
+          if (isRight(validation)) {
             return this.right(input);
           }
         }

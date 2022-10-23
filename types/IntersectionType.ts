@@ -29,11 +29,11 @@ class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<Inte
         let errors: ValidationError[] = [];
 
         for (const key in of) {
-          const validation = of[key].validate(input, [...context, { input: input, key, type: of[key] }]);
+          const type = of[key];
 
-          if (isLeft(validation)) {
-            errors = [...errors, ...validation.left];
-          }
+          const validation = type.validate(input, [...context, { input, key, type }]);
+
+          isLeft(validation) && (errors = [...errors, ...validation.left]);
         }
 
         return errors.length > 0 ? this.left(errors) : this.right(input as any);

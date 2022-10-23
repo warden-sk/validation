@@ -22,9 +22,7 @@ class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
           for (const key in input) {
             const validation = of.validate(input[key], [...context, { input: input[key], key, type: of }]);
 
-            if (isLeft(validation)) {
-              errors = [...errors, ...validation.left];
-            }
+            isLeft(validation) && (errors = [...errors, ...validation.left]);
           }
 
           return errors.length > 0 ? this.left(errors) : this.right(input);

@@ -22,11 +22,11 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
           let errors: ValidationError[] = [];
 
           for (const key of Object.keys(of)) {
-            const validation = of[key].validate(input[key], [...context, { input: input[key], key, type: of[key] }]);
+            const type = of[key];
 
-            if (isLeft(validation)) {
-              errors = [...errors, ...validation.left];
-            }
+            const validation = type.validate(input[key], [...context, { input: input[key], key, type }]);
+
+            isLeft(validation) && (errors = [...errors, ...validation.left]);
           }
 
           return errors.length > 0 ? this.left(errors) : this.right(input as any);

@@ -2,9 +2,9 @@
  * Copyright 2022 Marek Kobida
  */
 
-import report from './report';
 import * as t from '.';
 import type { TypeOf } from './types';
+import util from 'util';
 
 const l = new t.TupleType([
   new t.InterfaceType({
@@ -17,8 +17,8 @@ const l = new t.TupleType([
 
 type L = TypeOf<typeof l>;
 
-const r = { lastName: 'Kobida' };
+const r = [{ firstName: 'Marek' }, { lastName: 'Kobida' }];
 
 const decoded = l.decode(r);
 
-report(decoded);
+console.log(util.inspect(decoded, { colors: true, depth: 1337 }));
