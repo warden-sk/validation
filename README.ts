@@ -1,3 +1,7 @@
+/*
+ * Copyright 2022 Marek Kobida
+ */
+
 import * as t from '.';
 
 let rows = ['```typescript', "import * as t from '@warden-sk/validation';", '```'];
