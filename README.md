@@ -7,7 +7,7 @@ import * as t from '@warden-sk/validation';
 | 1 | ArrayType | `new t.ArrayType(new t.StringType())` |
 | 2 | BooleanType | `new t.BooleanType()` |
 | 3 | InterfaceType | `new t.InterfaceType({ firstName: new t.StringType() })` |
-| 4 | IntersectionType | `new t.IntersectionType([ new t.InterfaceType({ firstName: new t.StringType() }), new t.InterfaceType({ lastName: new t.StringType() }), ])` |
+| 4 | IntersectionType | `new t.IntersectionType([\n    new t.InterfaceType({ firstName: new t.StringType() }),\n    new t.InterfaceType({ lastName: new t.StringType() }),\n])` |
 | 5 | LiteralType | `new t.LiteralType('Marek Kobida')` |
 | 6 | NullType | `new t.NullType()` |
 | 7 | NumberType | `new t.NumberType()` |

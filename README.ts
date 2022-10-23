@@ -9,7 +9,7 @@ const tests: { [name: string]: string } = {
   BooleanType: 'new t.BooleanType()',
   InterfaceType: 'new t.InterfaceType({ firstName: new t.StringType() })',
   IntersectionType:
-    'new t.IntersectionType([ new t.InterfaceType({ firstName: new t.StringType() }), new t.InterfaceType({ lastName: new t.StringType() }), ])',
+    'new t.IntersectionType([\\n    new t.InterfaceType({ firstName: new t.StringType() }),\\n    new t.InterfaceType({ lastName: new t.StringType() }),\\n])',
   LiteralType: "new t.LiteralType('Marek Kobida')",
   NullType: 'new t.NullType()',
   NumberType: 'new t.NumberType()',
