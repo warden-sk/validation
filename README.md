@@ -1,17 +1,17 @@
 ```typescript
-import { ArrayType } from '@warden-sk/validation';
+import * as t from '@warden-sk/validation';
 ```
 # Types
-| # | Type |
-| --- | --- |
-| 1 | ArrayType |
-| 2 | BooleanType |
-| 3 | InterfaceType |
-| 4 | IntersectionType |
-| 5 | LiteralType |
-| 6 | NullType |
-| 7 | NumberType |
-| 8 | StringType |
-| 9 | TupleType |
-| 10 | UndefinedType |
-| 11 | UnionType |
+| # | Type | Test |
+| --- | --- | --- |
+| 1 | ArrayType | `new t.ArrayType(new t.StringType())` |
+| 2 | BooleanType | `new t.BooleanType()` |
+| 3 | InterfaceType | `new t.InterfaceType({ firstName: new t.StringType() })` |
+| 4 | IntersectionType | `new t.IntersectionType([ new t.InterfaceType({ firstName: new t.StringType() }), new t.InterfaceType({ lastName: new t.StringType() }), ])` |
+| 5 | LiteralType | `new t.LiteralType('Marek Kobida')` |
+| 6 | NullType | `new t.NullType()` |
+| 7 | NumberType | `new t.NumberType()` |
+| 8 | StringType | `new t.StringType()` |
+| 9 | TupleType | `new t.TupleType([new t.NumberType(), new t.StringType()])` |
+| 10 | UndefinedType | `new t.UndefinedType()` |
+| 11 | UnionType | `new t.UnionType([new t.NumberType(), new t.StringType()])` |
