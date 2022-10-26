@@ -25,3 +25,11 @@ export function right<T, E = never>(t: T): Either<E, T> {
     right: t,
   };
 }
+
+export function tryCatch<E, T>(onRight: () => T, onLeft: (e: unknown) => E): Either<E, T> {
+  try {
+    return right(onRight());
+  } catch (e) {
+    return left(onLeft(e));
+  }
+}
