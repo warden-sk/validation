@@ -31,7 +31,7 @@ class TupleType<Of extends [Type<any>, ...Type<any>[]]> extends Type<TupleTypeC<
           let errors: ValidationError[] = [];
 
           for (const key in of) {
-            const type = of[key];
+            const type = of[key]!;
 
             const validation = type.validate(input[key], [...context, { input: input[key], key, type }]);
 

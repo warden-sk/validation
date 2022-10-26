@@ -29,7 +29,7 @@ class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<Inte
         let errors: ValidationError[] = [];
 
         for (const key in of) {
-          const type = of[key];
+          const type = of[key]!;
 
           const validation = type.validate(input, [...context, { input, key, type }]);
 
