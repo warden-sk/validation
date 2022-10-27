@@ -5,16 +5,16 @@
 import type { Either } from './Either';
 import { tryCatch } from './Either';
 
-export type JSON_TYPE = JSON_TYPE[] | boolean | number | string | { [key: string]: JSON_TYPE } | null;
+type T = T[] | boolean | number | string | { [key: string]: T } | null;
 
-export function json_decode(input: string): Either<unknown, JSON_TYPE> {
+export function json_decode(input: string): Either<unknown, T> {
   return tryCatch(
     () => JSON.parse(input),
     e => e
   );
 }
 
-export function json_encode(input: JSON_TYPE): Either<unknown, string> {
+export function json_encode(input: T): Either<unknown, string> {
   return tryCatch(
     () => JSON.stringify(input),
     e => e
