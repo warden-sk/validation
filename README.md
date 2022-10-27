@@ -1,6 +1,11 @@
+# validation
+
 ```typescript
 import * as t from '@warden-sk/validation';
 ```
+
+## Motivácia
+> Text nie je k dispozícii.
 
 ## Types
 | # | Type |
@@ -80,6 +85,3 @@ const type = new t.UnionType([
 type T = t.TypeOf<typeof type>;
 // type T = { firstName: string } | { lastName: string };
 ```
-
-## Motivácia
-> Text nie je k dispozícii.

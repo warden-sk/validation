@@ -6,7 +6,11 @@ import * as t from '.';
 import fs from 'fs';
 
 async function $() {
-  let rows = ['```typescript', "import * as t from '@warden-sk/validation';", '```'];
+  let rows = ['# validation'];
+
+  rows = [...rows, '', '```typescript', "import * as t from '@warden-sk/validation';", '```'];
+
+  rows = [...rows, '', '## Motivácia', '> Text nie je k dispozícii.'];
 
   rows = [...rows, '', '## Types', '| # | Type |', '| ---: | ---: |'];
 
@@ -36,8 +40,6 @@ async function $() {
 
     rows = [...rows, '```'];
   }
-
-  rows = [...rows, '', '## Motivácia', '> Text nie je k dispozícii.'];
 
   console.log(rows.join('\n'));
 }
