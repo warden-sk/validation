@@ -3,7 +3,7 @@
  */
 
 import type { Either } from './Either';
-import { tryCatch } from './functions';
+import { tryCatch } from './Either';
 
 // private
 type T = T[] | boolean | number | string | { [key: string]: T } | null;

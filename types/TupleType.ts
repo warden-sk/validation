@@ -4,7 +4,7 @@
 
 import Type from '../Type';
 import type { TypeOf, ValidationError } from '../types';
-import { isLeft } from '../functions';
+import { isLeft } from '../Either';
 
 type TupleTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1 }
   ? [TypeOf<Of[0]>]

@@ -3,7 +3,7 @@
  */
 
 import type { Decoder, Is, Validate, Validation, ValidationError } from './types';
-import { left, right } from './functions';
+import { left, right } from './Either';
 
 class Type<T, I = unknown> implements Decoder<I, T> {
   readonly $!: string;

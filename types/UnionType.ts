@@ -4,7 +4,7 @@
 
 import Type from '../Type';
 import type { TypeOf, ValidationError } from '../types';
-import { isLeft, isRight } from '../functions';
+import { isLeft, isRight } from '../Either';
 
 class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
   readonly $: 'UnionType' = 'UnionType';

@@ -5,7 +5,7 @@
 import Type from '../Type';
 import isObject from '../isObject';
 import type { TypeOf, ValidationError } from '../types';
-import { isLeft } from '../functions';
+import { isLeft } from '../Either';
 
 class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key in keyof Of]: TypeOf<Of[Key]> }> {
   readonly $: 'InterfaceType' = 'InterfaceType';
