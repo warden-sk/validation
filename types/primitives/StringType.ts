@@ -3,7 +3,7 @@
  */
 
 import Type from '../../Type';
-import * as t from '../../index';
+import UndefinedType from './UndefinedType';
 
 class StringType extends Type<string> {
   readonly $: 'StringType' = 'StringType';
@@ -13,7 +13,7 @@ class StringType extends Type<string> {
       'string',
       (input): input is string => {
         if (typeof input === 'string') {
-          return !(!new t.UndefinedType().is(pattern) && !pattern.test(input));
+          return !(!new UndefinedType().is(pattern) && !pattern.test(input));
         }
 
         return false;

@@ -7,14 +7,14 @@ export interface Left<E> {
   readonly left: E;
 }
 
-export interface Right<T> {
+export interface Right<A> {
   readonly $: 'Right';
-  readonly right: T;
+  readonly right: A;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type Either<E, T> = Left<E> | Right<T>;
+export type Either<E, A> = Left<E> | Right<A>;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -31,25 +31,25 @@ export function isLeft<E>($: Either<E, unknown>): $ is Left<E> {
   return $.$ === 'Left';
 }
 
-export function isRight<T>($: Either<unknown, T>): $ is Right<T> {
+export function isRight<A>($: Either<unknown, A>): $ is Right<A> {
   return $.$ === 'Right';
 }
 
-export function left<E, T = never>(e: E): Either<E, T> {
+export function left<E, A = never>(e: E): Either<E, A> {
   return {
     $: 'Left',
     left: e,
   };
 }
 
-export function right<T, E = never>(t: T): Either<E, T> {
+export function right<A, E = never>(a: A): Either<E, A> {
   return {
     $: 'Right',
-    right: t,
+    right: a,
   };
 }
 
-export function tryCatch<E, T>(onRight: () => T, onLeft: (e: unknown) => E): Either<E, T> {
+export function tryCatch<E, A>(onRight: () => A, onLeft: (e: unknown) => E): Either<E, A> {
   try {
     return right(onRight());
   } catch (e) {

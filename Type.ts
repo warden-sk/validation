@@ -5,21 +5,21 @@
 import type { Decoder, Is, Validate, Validation, ValidationError } from './types';
 import { left, right } from './Either';
 
-class Type<T, I = unknown> implements Decoder<I, T> {
+class Type<A, I = unknown> implements Decoder<I, A> {
   readonly $!: string;
 
-  constructor(readonly name: string, readonly is: Is<T>, readonly validate: Validate<I, T>) {}
+  constructor(readonly name: string, readonly is: Is<A>, readonly validate: Validate<I, A>) {}
 
-  decode = (i: I): Validation<T> => {
+  decode = (i: I): Validation<A> => {
     return this.validate(i, [{ input: i, key: '', type: this }]);
   };
 
-  left<T>(errors: ValidationError[]): Validation<T> {
+  left<A>(errors: ValidationError[]): Validation<A> {
     return left(errors);
   }
 
-  right<T>(t: T): Validation<T> {
-    return right(t);
+  right<A>(a: A): Validation<A> {
+    return right(a);
   }
 }
 
