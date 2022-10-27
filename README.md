@@ -1,6 +1,5 @@
 ```typescript
 import * as t from '@warden-sk/validation';
-import type { TypeOf } from '@warden-sk/validation';
 ```
 
 ## Types
@@ -22,7 +21,7 @@ import type { TypeOf } from '@warden-sk/validation';
 ```typescript
 const type = new t.ArrayType(new t.StringType());
 
-type T = TypeOf<typeof type>; // string[]
+type T = t.TypeOf<typeof type>; // string[]
 ```
 
 ### InterfaceType
@@ -31,7 +30,7 @@ const type = new t.InterfaceType({
   firstName: new t.StringType(),
 });
 
-type T = TypeOf<typeof type>; // {firstName:string;}
+type T = t.TypeOf<typeof type>; // {firstName:string;}
 ```
 
 ### IntersectionType
@@ -45,21 +44,21 @@ const type = new t.IntersectionType([
   }),
 ]);
 
-type T = TypeOf<typeof type>; // {firstName:string;} & {lastName:string;}
+type T = t.TypeOf<typeof type>; // {firstName:string;} & {lastName:string;}
 ```
 
 ### LiteralType
 ```typescript
 const type = new t.LiteralType('Marek Kobida');
 
-type T = TypeOf<typeof type>; // "Marek Kobida"
+type T = t.TypeOf<typeof type>; // "Marek Kobida"
 ```
 
 ### TupleType
 ```typescript
 const type = new t.TupleType([new t.NumberType(), new t.StringType()]);
 
-type T = TypeOf<typeof type>; // [number,string]
+type T = t.TypeOf<typeof type>; // [number,string]
 ```
 
 ### UnionType
@@ -73,7 +72,7 @@ const type = new t.UnionType([
   }),
 ]);
 
-type T = TypeOf<typeof type>; // {firstName:string;} | {lastName:string;}
+type T = t.TypeOf<typeof type>; // {firstName:string;} | {lastName:string;}
 ```
 
 ## Motivácia

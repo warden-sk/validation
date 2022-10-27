@@ -6,12 +6,7 @@ import * as t from '.';
 import fs from 'fs';
 
 async function $() {
-  let rows = [
-    '```typescript',
-    "import * as t from '@warden-sk/validation';",
-    "import type { TypeOf } from '@warden-sk/validation';",
-    '```',
-  ];
+  let rows = ['```typescript', "import * as t from '@warden-sk/validation';", '```'];
 
   rows = [...rows, '', '## Types', '| # | Type |', '| --- | --- |'];
 
@@ -34,16 +29,10 @@ async function $() {
     rows = [...rows, '', `### ${fileName}`, '```typescript'];
 
     const file = fs.readFileSync(`./README/${fileName}.ts`).toString();
-    rows = [
-      ...rows,
-      ...file
-        .replace(/export default /, '')
-        .split(/\n/)
-        .filter((row, i) => i >= from && i <= to),
-    ];
+    rows = [...rows, ...file.split(/\n/).filter((row, i) => i >= from && i <= to)];
 
     const type = await import(`./README/${fileName}.ts`);
-    rows = [...rows, '', `type T = TypeOf<typeof type>; // ${type.default.name}`];
+    rows = [...rows, '', `type T = t.TypeOf<typeof type>; // ${type.default.name}`];
 
     rows = [...rows, '```'];
   }
