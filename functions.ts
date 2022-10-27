@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { Either, Left, Right } from './types';
+import type { Either, Left, Right } from './Either';
 
 export function isLeft<E>($: Either<E, unknown>): $ is Left<E> {
   return $.$ === 'Left';

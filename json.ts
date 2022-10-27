@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { Either } from './types';
+import type { Either } from './Either';
 import { tryCatch } from './functions';
 
 // private
