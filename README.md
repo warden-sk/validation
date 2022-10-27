@@ -22,7 +22,7 @@ import * as t from '@warden-sk/validation';
 const type = new t.ArrayType(new t.StringType());
 
 type T = t.TypeOf<typeof type>;
-// type T = string[]
+// type T = string[];
 ```
 
 ### InterfaceType
@@ -32,7 +32,7 @@ const type = new t.InterfaceType({
 });
 
 type T = t.TypeOf<typeof type>;
-// type T = { firstName: string; }
+// type T = { firstName: string };
 ```
 
 ### IntersectionType
@@ -47,7 +47,7 @@ const type = new t.IntersectionType([
 ]);
 
 type T = t.TypeOf<typeof type>;
-// type T = { firstName: string; } & { lastName: string; }
+// type T = { firstName: string } & { lastName: string };
 ```
 
 ### LiteralType
@@ -55,7 +55,7 @@ type T = t.TypeOf<typeof type>;
 const type = new t.LiteralType('Marek Kobida');
 
 type T = t.TypeOf<typeof type>;
-// type T = "Marek Kobida"
+// type T = "Marek Kobida";
 ```
 
 ### TupleType
@@ -63,7 +63,7 @@ type T = t.TypeOf<typeof type>;
 const type = new t.TupleType([new t.NumberType(), new t.StringType()]);
 
 type T = t.TypeOf<typeof type>;
-// type T = [number, string]
+// type T = [number, string];
 ```
 
 ### UnionType
@@ -78,7 +78,7 @@ const type = new t.UnionType([
 ]);
 
 type T = t.TypeOf<typeof type>;
-// type T = { firstName: string; } | { lastName: string; }
+// type T = { firstName: string } | { lastName: string };
 ```
 
 ## Motivácia

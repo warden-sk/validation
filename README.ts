@@ -32,7 +32,7 @@ async function $() {
     rows = [...rows, ...file.split(/\n/).filter((row, i) => i >= from && i <= to)];
 
     const type = await import(`./README/${fileName}.ts`);
-    rows = [...rows, '', 'type T = t.TypeOf<typeof type>;', `// type T = ${type.default.name}`];
+    rows = [...rows, '', 'type T = t.TypeOf<typeof type>;', `// type T = ${type.default.name};`];
 
     rows = [...rows, '```'];
   }

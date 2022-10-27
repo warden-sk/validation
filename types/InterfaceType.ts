@@ -11,7 +11,7 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
   constructor(readonly of: Of) {
     super(
       `{ ${Object.keys(of).reduce(
-        ($, key, i, keys) => ($ += `${key}: ${of[key]!.name}` + (i === keys.length - 1 ? ';' : '; ')),
+        ($, key, i) => ($ += i === 0 ? `${key}: ${of[key]!.name}` : `; ${key}: ${of[key]!.name}`),
         ''
       )} }`,
       //----------------------------------------------------------------------------------------------------------------
