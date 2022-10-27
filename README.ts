@@ -8,7 +8,7 @@ import fs from 'fs';
 async function $() {
   let rows = ['```typescript', "import * as t from '@warden-sk/validation';", '```'];
 
-  rows = [...rows, '', '## Types', '| # | Type |', '| --- | --- |'];
+  rows = [...rows, '', '## Types', '| # | Type |', '| ---: | ---: |'];
 
   for (const i in Object.keys(t)) {
     const name = Object.keys(t)[i];

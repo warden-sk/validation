@@ -4,7 +4,7 @@ import * as t from '@warden-sk/validation';
 
 ## Types
 | # | Type |
-| --- | --- |
+| ---: | ---: |
 | 1 | ArrayType |
 | 2 | BooleanType |
 | 3 | InterfaceType |
