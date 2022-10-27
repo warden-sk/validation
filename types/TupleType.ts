@@ -19,7 +19,7 @@ type TupleTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1
 class TupleType<Of extends [Type<any>, ...Type<any>[]]> extends Type<TupleTypeC<Of>> {
   constructor(readonly of: Of) {
     super(
-      `[${of.reduce(($, type, i) => ($ += i === 0 ? type.name : `,${type.name}`), '')}]`,
+      `[${of.reduce(($, type, i) => ($ += i === 0 ? type.name : `, ${type.name}`), '')}]`,
       //----------------------------------------------------------------------------------------------------------------
       (input): input is TupleTypeC<Of> =>
         Array.isArray(input) && input.length === of.length && of.every((type, key) => type.is(input[key])),
