@@ -30,7 +30,6 @@ export interface ValidationError {
 export type Decode<I, A> = (i: I) => Validation<A>;
 
 export interface Decoder<I, A> {
-  readonly $: string;
   readonly decode: Decode<I, A>;
   readonly name: string;
   readonly validate: Validate<I, A>;

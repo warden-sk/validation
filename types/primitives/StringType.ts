@@ -8,7 +8,6 @@ import UndefinedType from './UndefinedType';
 class StringType extends Type<string> {
   constructor({ pattern }: { pattern?: RegExp } = {}) {
     super(
-      'StringType',
       'string',
       (input): input is string => {
         if (typeof input === 'string') {

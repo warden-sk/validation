@@ -1,6 +1,7 @@
 ```typescript
 import * as t from '@warden-sk/validation';
 ```
+
 # Types
 | # | Type |
 | --- | --- |
@@ -15,3 +16,6 @@ import * as t from '@warden-sk/validation';
 | 9 | TupleType |
 | 10 | UndefinedType |
 | 11 | UnionType |
+
+# Motivácia
+> Text nie je k dispozícii.

@@ -4,7 +4,7 @@
 
 import * as t from '.';
 
-let rows = ['```typescript', "import * as t from '@warden-sk/validation';", '```'];
+let rows = ['```typescript', "import * as t from '@warden-sk/validation';", '```', ''];
 
 rows = [...rows, '# Types', '| # | Type |', '| --- | --- |'];
 
@@ -13,5 +13,7 @@ for (const i in Object.keys(t)) {
 
   rows = [...rows, `| ${+i + 1} | ${name} |`];
 }
+
+rows = [...rows, '', '# Motivácia', '> Text nie je k dispozícii.'];
 
 console.log(rows.join('\n'));

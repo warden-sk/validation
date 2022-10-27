@@ -7,7 +7,6 @@ import Type from '../../Type';
 class NumberType extends Type<number> {
   constructor() {
     super(
-      'NumberType',
       'number',
       (input): input is number => typeof input === 'number',
       (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }]))
