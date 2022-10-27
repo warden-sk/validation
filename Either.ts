@@ -19,11 +19,11 @@ export type Either<E, A> = Left<E> | Right<A>;
 //----------------------------------------------------------------------------------------------------------------------
 
 export const chainW =
-  <E2, A, B>(f: (a: A) => Either<E2, B>) =>
-  <E1>(ma: Either<E1, A>): Either<E1 | E2, B> =>
-    isLeft(ma) ? ma : f(ma.right);
+  <E2, A, B>(_2: (a: A) => Either<E2, B>) =>
+  <E1>(_1: Either<E1, A>): Either<E1 | E2, B> =>
+    isLeft(_1) ? _1 : _2(_1.right);
 
-export const chain: <E, A, B>(f: (a: A) => Either<E, B>) => (ma: Either<E, A>) => Either<E, B> = chainW;
+export const chain: <E, A, B>(_2: (a: A) => Either<E, B>) => (_1: Either<E, A>) => Either<E, B> = chainW;
 
 //----------------------------------------------------------------------------------------------------------------------
 

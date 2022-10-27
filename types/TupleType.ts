@@ -17,10 +17,9 @@ type TupleTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1
   : unknown;
 
 class TupleType<Of extends [Type<any>, ...Type<any>[]]> extends Type<TupleTypeC<Of>> {
-  readonly $: 'TupleType' = 'TupleType';
-
   constructor(readonly of: Of) {
     super(
+      'TupleType',
       `[${of.reduce(($, type, i) => ($ += i === 0 ? type.name : `,${type.name}`), '')}]`,
       //----------------------------------------------------------------------------------------------------------------
       (input): input is TupleTypeC<Of> =>

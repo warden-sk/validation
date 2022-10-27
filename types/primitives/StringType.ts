@@ -6,10 +6,9 @@ import Type from '../../Type';
 import UndefinedType from './UndefinedType';
 
 class StringType extends Type<string> {
-  readonly $: 'StringType' = 'StringType';
-
   constructor({ pattern }: { pattern?: RegExp } = {}) {
     super(
+      'StringType',
       'string',
       (input): input is string => {
         if (typeof input === 'string') {

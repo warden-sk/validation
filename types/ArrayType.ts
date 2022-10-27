@@ -7,10 +7,9 @@ import type { TypeOf, ValidationError } from '../types';
 import { isLeft } from '../Either';
 
 class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
-  readonly $: 'ArrayType' = 'ArrayType';
-
   constructor(readonly of: Of) {
     super(
+      'ArrayType',
       `${of.name}[]`,
       //----------------------------------------------------------------------------------------------------------------
       (input): input is TypeOf<Of>[] => Array.isArray(input) && input.every(of.is),

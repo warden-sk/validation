@@ -7,10 +7,9 @@ import type { TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../Either';
 
 class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
-  readonly $: 'UnionType' = 'UnionType';
-
   constructor(readonly of: Of) {
     super(
+      'UnionType',
       of.reduce(($, type, i) => ($ += i === 0 ? type.name : `|${type.name}`), ''),
       //----------------------------------------------------------------------------------------------------------------
       (input): input is TypeOf<Of>[number] => of.some(type => type.is(input)),

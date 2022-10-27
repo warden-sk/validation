@@ -7,7 +7,15 @@ function pipe<A, B>(a: A, ab: (a: A) => B): B;
 function pipe<A, B, C>(a: A, ab: (a: A) => B, bc: (b: B) => C): C;
 function pipe<A, B, C, D>(a: A, ab: (a: A) => B, bc: (b: B) => C, cd: (c: C) => D): D;
 function pipe<A, B, C, D, E>(a: A, ab: (a: A) => B, bc: (b: B) => C, cd: (c: C) => D, de: (d: D) => E): E;
-function pipe(a: unknown, ab?: Function, bc?: Function, cd?: Function, de?: Function): unknown {
+function pipe<A, B, C, D, E, F>(
+  a: A,
+  ab: (a: A) => B,
+  bc: (b: B) => C,
+  cd: (c: C) => D,
+  de: (d: D) => E,
+  ef: (e: E) => F
+): F;
+function pipe(a: unknown, ab?: Function, bc?: Function, cd?: Function, de?: Function, ef?: Function): unknown {
   switch (arguments.length) {
     case 1:
       return a;
@@ -19,6 +27,8 @@ function pipe(a: unknown, ab?: Function, bc?: Function, cd?: Function, de?: Func
       return cd!(bc!(ab!(a)));
     case 5:
       return de!(cd!(bc!(ab!(a))));
+    case 6:
+      return ef!(de!(cd!(bc!(ab!(a)))));
   }
 }
 
