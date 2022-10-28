@@ -6,7 +6,7 @@ import * as t from '.';
 import fs from 'fs';
 
 async function $() {
-  let rows = ['# validation'];
+  let rows: string[] = ['# validation'];
 
   rows = [...rows, '', '```typescript', "import * as t from '@warden-sk/validation';", '```'];
 
