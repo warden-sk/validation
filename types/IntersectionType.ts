@@ -2,8 +2,8 @@
  * Copyright 2022 Marek Kobida
  */
 
-import Type from '../Type';
 import type { TypeOf, ValidationError } from '../types';
+import Type from '../Type';
 import { isLeft } from '../Either';
 
 type IntersectionTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1 }

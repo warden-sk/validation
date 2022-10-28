@@ -2,8 +2,8 @@
  * Copyright 2022 Marek Kobida
  */
 
-import Type from '../Type';
 import type { TypeOf, ValidationError } from '../types';
+import Type from '../Type';
 import { isLeft } from '../Either';
 
 class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {

@@ -2,9 +2,9 @@
  * Copyright 2022 Marek Kobida
  */
 
-import Type from '../Type';
 import type { TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../Either';
+import Type from '../Type';
 
 class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
   constructor(readonly of: Of) {

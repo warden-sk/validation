@@ -2,8 +2,8 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type Type from './Type';
 import type { Either } from './Either';
+import type Type from './Type';
 
 export type Is<A> = (i: unknown) => i is A;
 

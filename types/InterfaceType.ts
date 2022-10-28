@@ -2,10 +2,10 @@
  * Copyright 2022 Marek Kobida
  */
 
-import Type from '../Type';
-import isObject from '../isObject';
 import type { TypeOf, ValidationError } from '../types';
+import Type from '../Type';
 import { isLeft } from '../Either';
+import isObject from '../isObject';
 
 class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key in keyof Of]: TypeOf<Of[Key]> }> {
   constructor(readonly of: Of) {
