@@ -6,17 +6,17 @@ import type { Either } from './Either';
 import fs from 'fs';
 import { tryCatch } from './Either';
 
-export function read_file(path: string): Either<unknown, string> {
+export function read_file(path: string): Either<string, string> {
   return tryCatch(
     () => fs.readFileSync(path).toString(),
-    e => e
+    () => 'Reading from file is not valid.'
   );
 }
 
-export function write_file(path: string): ($: string) => Either<unknown, void> {
+export function write_file(path: string): ($: string) => Either<string, void> {
   return $ =>
     tryCatch(
       () => fs.writeFileSync(path, $),
-      e => e
+      () => 'Writing to file is not valid.'
     );
 }
