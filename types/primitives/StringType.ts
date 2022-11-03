@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-import Type from '../../Type';
+import Type from '../../helpers/Type';
 import UndefinedType from './UndefinedType';
 
 class StringType extends Type<string> {

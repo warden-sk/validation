@@ -6,7 +6,7 @@ import ArrayType from './types/ArrayType';
 import InterfaceType from './types/InterfaceType';
 import IntersectionType from './types/IntersectionType';
 import StringType from './types/primitives/StringType';
-import type Type from './Type';
+import type Type from './helpers/Type';
 import { strict as assert } from 'assert';
 
 test(

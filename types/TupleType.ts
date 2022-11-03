@@ -3,7 +3,7 @@
  */
 
 import type { TypeOf, ValidationError } from '../types';
-import Type from '../Type';
+import Type from '../helpers/Type';
 import { isLeft } from '../Either';
 
 type TupleTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1 }
@@ -27,6 +27,7 @@ class TupleType<Of extends [Type<any>, ...Type<any>[]]> extends Type<TupleTypeC<
       (input, context) => {
         if (Array.isArray(input)) {
           let errors: ValidationError[] = [];
+          // dokončiť "output"
 
           for (const key in of) {
             const type = of[key]!;

@@ -2,8 +2,8 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { Decoder, Is, Validate, Validation, ValidationError } from './types';
-import { left, right } from './Either';
+import type { Decoder, Is, Validate, Validation, ValidationError } from '../types';
+import { left, right } from '../Either';
 
 class Type<A, I = unknown> implements Decoder<I, A> {
   constructor(readonly name: string, readonly is: Is<A>, readonly validate: Validate<I, A>) {}

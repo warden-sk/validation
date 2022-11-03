@@ -2,12 +2,12 @@
  * Copyright 2022 Marek Kobida
  */
 
-export interface Left<E> {
+interface Left<E> {
   readonly $: 'Left';
   readonly left: E;
 }
 
-export interface Right<A> {
+interface Right<A> {
   readonly $: 'Right';
   readonly right: A;
 }

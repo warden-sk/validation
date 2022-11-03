@@ -3,7 +3,7 @@
  */
 
 import type { Either } from './Either';
-import type Type from './Type';
+import type Type from './helpers/Type';
 
 export type Is<A> = (i: unknown) => i is A;
 

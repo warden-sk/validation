@@ -4,7 +4,7 @@
 
 import type { TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../Either';
-import Type from '../Type';
+import Type from '../helpers/Type';
 
 type IntersectionTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1 }
   ? TypeOf<Of[0]>
@@ -25,6 +25,7 @@ class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<Inte
       //----------------------------------------------------------------------------------------------------------------
       (input, context) => {
         let errors: ValidationError[] = [];
+        // dokončiť "output"
 
         for (const key in of) {
           const type = of[key]!;

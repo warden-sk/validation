@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-import Type from '../../Type';
+import Type from '../../helpers/Type';
 
 class LiteralType<Of extends boolean | number | string> extends Type<Of> {
   constructor(readonly of: Of) {

@@ -4,7 +4,7 @@
 
 import type { TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../Either';
-import Type from '../Type';
+import Type from '../helpers/Type';
 
 class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
   constructor(readonly of: Of) {

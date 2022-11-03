@@ -4,7 +4,7 @@
 
 import type { TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../Either';
-import Type from '../Type';
+import Type from '../helpers/Type';
 
 class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
   constructor(readonly of: Of) {
@@ -15,6 +15,7 @@ class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
       //----------------------------------------------------------------------------------------------------------------
       (input, context) => {
         let errors: ValidationError[] = [];
+        // dokončiť "output"
 
         for (const key in of) {
           const type = of[key]!;

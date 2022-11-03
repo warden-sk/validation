@@ -4,8 +4,8 @@
 
 import type { TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../Either';
-import Type from '../Type';
-import isObject from '../isObject';
+import Type from '../helpers/Type';
+import isObject from '../helpers/isObject';
 
 class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key in keyof Of]: TypeOf<Of[Key]> }> {
   constructor(readonly of: Of) {
