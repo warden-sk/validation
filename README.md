@@ -4,9 +4,6 @@
 import * as t from '@warden-sk/validation';
 ```
 
-## Motivácia
-> Text nie je k dispozícii.
-
 ## Types
 | # | Type |
 | ---: | ---: |

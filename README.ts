@@ -10,8 +10,6 @@ async function $() {
 
   rows = [...rows, '', '```typescript', "import * as t from '@warden-sk/validation';", '```'];
 
-  rows = [...rows, '', '## Motivácia', '> Text nie je k dispozícii.'];
-
   rows = [...rows, '', '## Types', '| # | Type |', '| ---: | ---: |'];
 
   for (const i in Object.keys(t)) {
