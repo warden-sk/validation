@@ -2,8 +2,8 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { Either } from './Either';
-import { tryCatch } from './Either';
+import type { Either } from '../Either';
+import { tryCatch } from '../Either';
 
 type T = T[] | boolean | number | string | { [key: string]: T } | null;
 
