@@ -33,10 +33,12 @@ class TupleType<Of extends [Type<any>, ...Type<any>[]]> extends Type<TupleTypeC<
 
             const validation = type.validate(input[key], [...context, { input: input[key], key, type }]);
 
-            isLeft(validation) && (errors = [...errors, ...validation.left]);
+            if (isLeft(validation)) {
+              errors = [...errors, ...validation.left];
+            }
           }
 
-          return errors.length > 0 ? this.left(errors) : this.right(input as any);
+          return errors.length > 0 ? this.left(errors) : this.right(input as TupleTypeC<Of>);
         }
 
         return this.left([{ context, input }]);

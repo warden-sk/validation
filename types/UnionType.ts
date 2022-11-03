@@ -21,7 +21,9 @@ class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
 
           const validation = type.validate(input, [...context, { input, key, type }]);
 
-          isLeft(validation) && (errors = [...errors, ...validation.left]);
+          if (isLeft(validation)) {
+            errors = [...errors, ...validation.left];
+          }
 
           if (isRight(validation)) {
             return this.right(input);

@@ -37,7 +37,7 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
             }
           }
 
-          return errors.length > 0 ? this.left(errors) : this.right(output as any);
+          return errors.length > 0 ? this.left(errors) : this.right(output as { [Key in keyof Of]: TypeOf<Of[Key]> });
         }
 
         return this.left([{ context, input }]);
