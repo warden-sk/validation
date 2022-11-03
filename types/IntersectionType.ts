@@ -31,8 +31,9 @@ class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<Inte
 
           const validation = type.validate(input, [...context, { input, key, type }]);
 
-          isLeft(validation) && (errors = [...errors, ...validation.left]);
-        }
+          if (isLeft(validation)) {
+            errors = [...errors, ...validation.left];
+          }
 
         return errors.length > 0 ? this.left(errors) : this.right(input as any);
       }

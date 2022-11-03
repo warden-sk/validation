@@ -27,8 +27,9 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
 
             const validation = type.validate(input[key], [...context, { input: input[key], key, type }]);
 
-            isLeft(validation) && (errors = [...errors, ...validation.left]);
-          }
+            if (isLeft(validation)) {
+              errors = [...errors, ...validation.left];
+            }
 
           return errors.length > 0 ? this.left(errors) : this.right(input as any);
         }
