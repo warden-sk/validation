@@ -3,8 +3,8 @@
  */
 
 import type { TypeOf, ValidationError } from '../types';
+import { isLeft, isRight } from '../Either';
 import Type from '../Type';
-import { isLeft } from '../Either';
 
 type IntersectionTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1 }
   ? TypeOf<Of[0]>
@@ -34,6 +34,7 @@ class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<Inte
           if (isLeft(validation)) {
             errors = [...errors, ...validation.left];
           }
+        }
 
         return errors.length > 0 ? this.left(errors) : this.right(input as any);
       }

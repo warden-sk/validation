@@ -3,8 +3,8 @@
  */
 
 import type { TypeOf, ValidationError } from '../types';
+import { isLeft, isRight } from '../Either';
 import Type from '../Type';
-import { isLeft } from '../Either';
 import isObject from '../isObject';
 
 class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key in keyof Of]: TypeOf<Of[Key]> }> {
@@ -21,6 +21,7 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
       (input, context) => {
         if (isObject(input)) {
           let errors: ValidationError[] = [];
+          const output: { [Key in keyof typeof input]: typeof input[Key] } = {};
 
           for (const key of Object.keys(of)) {
             const type = of[key]!;
@@ -31,7 +32,12 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
               errors = [...errors, ...validation.left];
             }
 
-          return errors.length > 0 ? this.left(errors) : this.right(input as any);
+            if (isRight(validation)) {
+              output[key] = input[key];
+            }
+          }
+
+          return errors.length > 0 ? this.left(errors) : this.right(output as any);
         }
 
         return this.left([{ context, input }]);
