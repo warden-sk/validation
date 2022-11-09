@@ -43,7 +43,8 @@ class TupleType<Of extends [Type<any>, ...Type<any>[]]> extends Type<TupleTypeC<
         }
 
         return this.left([{ context, input }]);
-      }
+      },
+      $ => $
     );
   }
 }

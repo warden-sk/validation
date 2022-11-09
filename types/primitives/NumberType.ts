@@ -9,7 +9,8 @@ class NumberType extends Type<number> {
     super(
       'number',
       (input): input is number => typeof input === 'number',
-      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }]))
+      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
+      $ => $
     );
   }
 }

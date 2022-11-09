@@ -9,7 +9,8 @@ class LiteralType<Of extends boolean | number | string> extends Type<Of> {
     super(
       typeof of === 'string' ? `"${of}"` : of.toString(),
       (input): input is Of => input === of,
-      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }]))
+      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
+      $ => $
     );
   }
 }

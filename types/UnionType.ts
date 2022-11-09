@@ -32,7 +32,8 @@ class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
         }
 
         return this.left(errors);
-      }
+      },
+      $ => $
     );
   }
 }

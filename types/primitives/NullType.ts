@@ -9,7 +9,8 @@ class NullType extends Type<null> {
     super(
       'null',
       (input): input is null => input === null,
-      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }]))
+      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
+      $ => $
     );
   }
 }

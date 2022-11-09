@@ -38,7 +38,8 @@ class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<Inte
         }
 
         return errors.length > 0 ? this.left(errors) : this.right(input as IntersectionTypeC<Of>);
-      }
+      },
+      $ => $
     );
   }
 }

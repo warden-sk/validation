@@ -16,7 +16,8 @@ class StringType extends Type<string> {
 
         return false;
       },
-      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }]))
+      (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
+      $ => $
     );
   }
 }

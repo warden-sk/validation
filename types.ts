@@ -37,4 +37,12 @@ export interface Decoder<I, A> {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+export type Encode<A, O> = (a: A) => O;
+
+export interface Encoder<A, O> {
+  readonly encode: Encode<A, O>;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 export type TypeOf<Of> = Of extends Type<infer A>[] ? A[] : Of extends Type<infer A> ? A : never;

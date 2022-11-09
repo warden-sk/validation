@@ -34,7 +34,8 @@ class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
         }
 
         return this.left([{ context, input }]);
-      }
+      },
+      $ => $
     );
   }
 }

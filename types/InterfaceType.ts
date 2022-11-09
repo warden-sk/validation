@@ -41,7 +41,8 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
         }
 
         return this.left([{ context, input }]);
-      }
+      },
+      $ => $
     );
   }
 }
