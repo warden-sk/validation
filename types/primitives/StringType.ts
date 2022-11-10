@@ -4,6 +4,7 @@
 
 import Type from '../../helpers/Type';
 import UndefinedType from './UndefinedType';
+import identity from '../../helpers/identity';
 
 class StringType extends Type<string> {
   constructor({ pattern }: { pattern?: RegExp } = {}) {
@@ -17,7 +18,7 @@ class StringType extends Type<string> {
         return false;
       },
       (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
-      $ => $
+      identity
     );
   }
 }

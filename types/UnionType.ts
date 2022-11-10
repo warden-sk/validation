@@ -5,6 +5,7 @@
 import type { TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../Either';
 import Type from '../helpers/Type';
+import identity from '../helpers/identity';
 
 class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
   constructor(readonly of: Of) {
@@ -33,7 +34,7 @@ class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
 
         return this.left(errors);
       },
-      $ => $
+      identity
     );
   }
 }

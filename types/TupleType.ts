@@ -5,6 +5,7 @@
 import type { TypeOf, ValidationError } from '../types';
 import Type from '../helpers/Type';
 import { isLeft } from '../Either';
+import identity from '../helpers/identity';
 
 type TupleTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1 }
   ? [TypeOf<Of[0]>]
@@ -44,7 +45,7 @@ class TupleType<Of extends [Type<any>, ...Type<any>[]]> extends Type<TupleTypeC<
 
         return this.left([{ context, input }]);
       },
-      $ => $
+      identity
     );
   }
 }

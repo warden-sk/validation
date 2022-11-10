@@ -3,6 +3,7 @@
  */
 
 import Type from '../../helpers/Type';
+import identity from '../../helpers/identity';
 
 class BooleanType extends Type<boolean> {
   constructor() {
@@ -10,7 +11,7 @@ class BooleanType extends Type<boolean> {
       'boolean',
       (input): input is boolean => typeof input === 'boolean',
       (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
-      $ => $
+      identity
     );
   }
 }

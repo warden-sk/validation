@@ -3,6 +3,7 @@
  */
 
 import Type from '../../helpers/Type';
+import identity from '../../helpers/identity';
 
 class UndefinedType extends Type<undefined> {
   constructor() {
@@ -10,7 +11,7 @@ class UndefinedType extends Type<undefined> {
       'undefined',
       (input): input is undefined => typeof input === 'undefined',
       (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
-      $ => $
+      identity
     );
   }
 }

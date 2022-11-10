@@ -3,6 +3,7 @@
  */
 
 import Type from '../../helpers/Type';
+import identity from '../../helpers/identity';
 
 class NumberType extends Type<number> {
   constructor() {
@@ -10,7 +11,7 @@ class NumberType extends Type<number> {
       'number',
       (input): input is number => typeof input === 'number',
       (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
-      $ => $
+      identity
     );
   }
 }

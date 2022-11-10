@@ -5,6 +5,7 @@
 import type { TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../Either';
 import Type from '../helpers/Type';
+import identity from '../helpers/identity';
 
 class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
   constructor(readonly of: Of) {
@@ -35,7 +36,7 @@ class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
 
         return this.left([{ context, input }]);
       },
-      $ => $
+      identity
     );
   }
 }

@@ -6,6 +6,7 @@ import type { TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../Either';
 import Type from '../helpers/Type';
 import isObject from '../helpers/isObject';
+import identity from '../helpers/identity';
 
 class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key in keyof Of]: TypeOf<Of[Key]> }> {
   constructor(readonly of: Of) {
@@ -42,7 +43,7 @@ class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key
 
         return this.left([{ context, input }]);
       },
-      $ => $
+      identity
     );
   }
 }
