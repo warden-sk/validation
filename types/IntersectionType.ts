@@ -3,9 +3,9 @@
  */
 
 import type { TypeOf, ValidationError } from '../types';
-import { isLeft, isRight } from '../Either';
 import Type from '../helpers/Type';
 import identity from '../helpers/identity';
+import { isLeft } from '../either';
 
 type IntersectionTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1 }
   ? TypeOf<Of[0]>

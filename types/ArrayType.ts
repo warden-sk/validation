@@ -3,7 +3,7 @@
  */
 
 import type { TypeOf, ValidationError } from '../types';
-import { isLeft, isRight } from '../Either';
+import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
 import identity from '../helpers/identity';
 

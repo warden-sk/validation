@@ -2,9 +2,9 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { Either } from '../Either';
+import type { Either } from '../either';
 import fs from 'fs';
-import { tryCatch } from '../Either';
+import { tryCatch } from '../either';
 
 export function read_file(path: string): Either<string, string> {
   return tryCatch(

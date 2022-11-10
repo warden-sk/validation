@@ -3,7 +3,7 @@
  */
 
 import type { Decoder, Encode, Encoder, Is, Validate, Validation, ValidationError } from '../types';
-import { left, right } from '../Either';
+import { left, right } from '../either';
 
 class Type<A, O = A, I = unknown> implements Decoder<I, A>, Encoder<A, O> {
   constructor(
