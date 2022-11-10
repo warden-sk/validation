@@ -5,13 +5,13 @@
 import type { Either } from './either';
 import type Type from './helpers/Type';
 
-export type Is<A> = (i: unknown) => i is A;
+export type Is<T> = (i: unknown) => i is T;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type Validate<I, A> = (i: I, c: ValidationContext[]) => Validation<A>;
+export type Validate<I, T> = (i: I, c: ValidationContext[]) => Validation<T>;
 
-export type Validation<A> = Either<ValidationError[], A>;
+export type Validation<T> = Either<ValidationError[], T>;
 
 export interface ValidationContext {
   readonly input: unknown /* undefined? */;
@@ -27,22 +27,22 @@ export interface ValidationError {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type Decode<I, A> = (i: I) => Validation<A>;
+export type Decode<I, T> = (i: I) => Validation<T>;
 
-export interface Decoder<I, A> {
-  readonly decode: Decode<I, A>;
+export interface Decoder<I, T> {
+  readonly decode: Decode<I, T>;
   readonly name: string;
-  readonly validate: Validate<I, A>;
+  readonly validate: Validate<I, T>;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type Encode<A, O> = (a: A) => O;
+export type Encode<T, O> = (t: T) => O;
 
-export interface Encoder<A, O> {
-  readonly encode: Encode<A, O>;
+export interface Encoder<T, O> {
+  readonly encode: Encode<T, O>;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type TypeOf<Of> = Of extends Type<infer A>[] ? A[] : Of extends Type<infer A> ? A : never;
+export type TypeOf<Of> = Of extends Type<infer T>[] ? T[] : Of extends Type<infer T> ? T : never;

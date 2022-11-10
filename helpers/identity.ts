@@ -2,6 +2,6 @@
  * Copyright 2022 Marek Kobida
  */
 
-const identity = <A>(a: A): A => a;
+const identity = <T>(t: T): T => t;
 
 export default identity;
