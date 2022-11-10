@@ -17,6 +17,7 @@ class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
       (input, context) => {
         if (Array.isArray(input)) {
           let errors: ValidationError[] = [];
+
           const output: TypeOf<Of>[] = [];
 
           for (const key in input) {
