@@ -7,6 +7,7 @@ import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
 import identity from '../helpers/identity';
 
+//                         minimálne 2
 class UnionType<Of extends [Mixed, Mixed, ...Mixed[]]> extends Type<TypeOf<Of[number]>, OutputOf<Of[number]>, unknown> {
   constructor(readonly of: Of) {
     super(

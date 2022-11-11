@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-import * as t from '.';
+import * as t from '../index';
 import fs from 'fs';
 
 async function $() {
@@ -33,13 +33,13 @@ async function $() {
     const file = fs.readFileSync(`./README/${fileName}.ts`).toString();
     rows = [...rows, ...file.split(/\n/).filter((row, i) => i >= from && i <= to)];
 
-    const type = await import(`./README/${fileName}.ts`);
+    const type = await import(`./${fileName}.ts`);
     rows = [...rows, '', 'type T = t.TypeOf<typeof type>;', `// type T = ${type.default.name};`];
 
     rows = [...rows, '```'];
   }
 
-  console.log(rows.join('\n'));
+  fs.writeFileSync('./README.md', rows.join('\n'));
 }
 
 $();
