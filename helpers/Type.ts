@@ -24,6 +24,11 @@ class Type<T, O = T, I = unknown> implements Decoder<I, T>, Encoder<T, O> {
   right<T>(t: T): Validation<T> {
     return right(t);
   }
+
+  // dokončiť
+  static typeName<Keys extends any[]>(keys: Keys, on: (key: Keys[number]) => string, $: string): string {
+    return keys.reduce(($$, key, i) => ($$ += i === 0 ? on(key) : $ + on(key)), '');
+  }
 }
 
 export default Type;

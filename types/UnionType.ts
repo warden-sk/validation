@@ -10,7 +10,7 @@ import identity from '../helpers/identity';
 class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
   constructor(readonly of: Of) {
     super(
-      of.reduce(($, type, i) => ($ += i === 0 ? type.name : ` | ${type.name}`), ''),
+      Type.typeName(of, type => type.name, ' | '),
       //----------------------------------------------------------------------------------------------------------------
       (input): input is TypeOf<Of>[number] => of.some(type => type.is(input)),
       //----------------------------------------------------------------------------------------------------------------

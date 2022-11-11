@@ -20,7 +20,7 @@ type IntersectionTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { le
 class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<IntersectionTypeC<Of>> {
   constructor(readonly of: Of) {
     super(
-      of.reduce(($, type, i) => ($ += i === 0 ? type.name : ` & ${type.name}`), ''),
+      Type.typeName(of, type => type.name, ' & '),
       //----------------------------------------------------------------------------------------------------------------
       (input): input is IntersectionTypeC<Of> => of.every(type => type.is(input)),
       //----------------------------------------------------------------------------------------------------------------
