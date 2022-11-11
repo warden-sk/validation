@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-export type { TypeOf } from './types';
+export type { InputOf, OutputOf, TypeOf } from './types';
 export { default as ArrayType } from './types/ArrayType';
 export { default as BooleanType } from './types/primitives/BooleanType';
 export { default as InterfaceType } from './types/InterfaceType';

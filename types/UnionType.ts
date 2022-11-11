@@ -2,17 +2,17 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { TypeOf, ValidationError } from '../types';
+import type { Mixed, OutputOf, TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
 import identity from '../helpers/identity';
 
-class UnionType<Of extends Type<any>[]> extends Type<TypeOf<Of>[number]> {
+class UnionType<Of extends [Mixed, Mixed, ...Mixed[]]> extends Type<TypeOf<Of[number]>, OutputOf<Of[number]>, unknown> {
   constructor(readonly of: Of) {
     super(
       Type.typeName(of, type => type.name, ' | '),
       //----------------------------------------------------------------------------------------------------------------
-      (input): input is TypeOf<Of>[number] => of.some(type => type.is(input)),
+      (input): input is TypeOf<Of[number]> => of.some(type => type.is(input)),
       //----------------------------------------------------------------------------------------------------------------
       (input, context) => {
         let errors: ValidationError[] = [];

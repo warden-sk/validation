@@ -6,6 +6,10 @@ import type { Decoder, Encode, Encoder, Is, Validate, Validation, ValidationErro
 import { left, right } from '../either';
 
 class Type<T, O = T, I = unknown> implements Decoder<I, T>, Encoder<T, O> {
+  readonly _I!: I;
+  readonly _O!: O;
+  readonly _T!: T;
+
   constructor(
     readonly name: string,
     readonly is: Is<T>,

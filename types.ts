@@ -45,4 +45,14 @@ export interface Encoder<T, O> {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type TypeOf<Of> = Of extends Type<infer T>[] ? T[] : Of extends Type<infer T> ? T : never;
+export interface Any extends Type<any, any, any> {}
+
+export interface Mixed extends Type<any, any, unknown> {}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+export type InputOf<Of extends Any> = Of['_I'];
+
+export type OutputOf<Of extends Any> = Of['_O'];
+
+export type TypeOf<Of extends Any> = Of['_T'];
