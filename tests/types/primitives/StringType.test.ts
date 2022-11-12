@@ -1,3 +1,7 @@
+/*
+ * Copyright 2022 Marek Kobida
+ */
+
 import StringType from '../../../types/primitives/StringType';
 
 const type = new StringType();
@@ -22,6 +26,31 @@ test('StringType.decode', () => {
   expect(type.decode('A')).toStrictEqual({
     $: 'Right',
     right: 'A',
+  });
+});
+
+test('StringType.decode with RegExp pattern', () => {
+  const type = new StringType({ pattern: /[0-9]+/ });
+
+  expect(type.decode(0)).toStrictEqual({
+    $: 'Left',
+    left: [
+      {
+        context: [
+          {
+            input: 0,
+            key: '',
+            type,
+          },
+        ],
+        input: 0,
+      },
+    ],
+  });
+
+  expect(type.decode('0')).toStrictEqual({
+    $: 'Right',
+    right: '0',
   });
 });
 

@@ -7,12 +7,12 @@ import UndefinedType from './UndefinedType';
 import identity from '../../helpers/identity';
 
 class StringType extends Type<string> {
-  constructor({ pattern }: { pattern?: RegExp } = {}) {
+  constructor(readonly $: { pattern?: RegExp } = {}) {
     super(
       'string',
       (input): input is string => {
         if (typeof input === 'string') {
-          return !(!new UndefinedType().is(pattern) && !pattern.test(input));
+          return !(!new UndefinedType().is($.pattern) && !$.pattern.test(input));
         }
 
         return false;
