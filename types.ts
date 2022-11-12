@@ -5,13 +5,13 @@
 import type { Either } from './either';
 import type Type from './helpers/Type';
 
-export type Is<T> = (i: unknown) => i is T;
+export type Is<Type> = (input: unknown) => input is Type;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type Validate<I, T> = (i: I, c: ValidationContext[]) => Validation<T>;
+export type Validate<Input, Type> = (input: Input, context: ValidationContext[]) => Validation<Type>;
 
-export type Validation<T> = Either<ValidationError[], T>;
+export type Validation<Type> = Either<ValidationError[], Type>;
 
 export interface ValidationContext {
   readonly input: unknown /* dokončiť undefined? */;
@@ -27,20 +27,20 @@ export interface ValidationError {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type Decode<I, T> = (i: I) => Validation<T>;
+export type Decode<Input, Type> = (input: Input) => Validation<Type>;
 
-export interface Decoder<I, T> {
-  readonly decode: Decode<I, T>;
+export interface Decoder<Input, Type> {
+  readonly decode: Decode<Input, Type>;
   readonly name: string;
-  readonly validate: Validate<I, T>;
+  readonly validate: Validate<Input, Type>;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type Encode<T, O> = (t: T) => O;
+export type Encode<Type, Output> = (type: Type) => Output;
 
-export interface Encoder<T, O> {
-  readonly encode: Encode<T, O>;
+export interface Encoder<Type, Output> {
+  readonly encode: Encode<Type, Output>;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
