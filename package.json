@@ -1,10 +1,10 @@
 {
   "devDependencies": {
-    "@types/node": "^18.8.4",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
     "@warden-sk/eslint-config": "file:../eslint-config",
-    "eslint": "^8.24.0",
+    "eslint": "^8.27.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1"
   },
