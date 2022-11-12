@@ -14,7 +14,7 @@ export type Validate<Input, Type> = (input: Input, context: ValidationContext[])
 export type Validation<Type> = Either<ValidationError[], Type>;
 
 export interface ValidationContext {
-  readonly input: unknown /* dokončiť undefined? */;
+  readonly input: unknown;
   readonly key: string;
   readonly type: Decoder<any, any>;
 }
@@ -22,7 +22,6 @@ export interface ValidationContext {
 export interface ValidationError {
   readonly context: ValidationContext[];
   readonly input: unknown;
-  readonly message?: string;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
