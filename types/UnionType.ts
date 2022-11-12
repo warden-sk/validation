@@ -6,12 +6,13 @@ import type { Mixed, OutputOf, TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
 import identity from '../helpers/identity';
+import typeName from '../helpers/typeName';
 
 //                         minimálne 2
 class UnionType<Of extends [Mixed, Mixed, ...Mixed[]]> extends Type<TypeOf<Of[number]>, OutputOf<Of[number]>, unknown> {
   constructor(readonly of: Of) {
     super(
-      Type.typeName(of, type => type.name, ' | '),
+      typeName(of, type => type.name, ' | '),
       //----------------------------------------------------------------------------------------------------------------
       (input): input is TypeOf<Of[number]> => of.some(type => type.is(input)),
       //----------------------------------------------------------------------------------------------------------------

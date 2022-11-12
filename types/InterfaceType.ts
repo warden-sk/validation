@@ -2,16 +2,17 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { TypeOf, ValidationError } from '../types';
+import type { Any, TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
 import identity from '../helpers/identity';
 import isObject from '../helpers/isObject';
+import typeName from '../helpers/typeName';
 
-class InterfaceType<Of extends { [key: string]: Type<any> }> extends Type<{ [Key in keyof Of]: TypeOf<Of[Key]> }> {
+class InterfaceType<Of extends { [key: string]: Any }> extends Type<{ [Key in keyof Of]: TypeOf<Of[Key]> }> {
   constructor(readonly of: Of) {
     super(
-      `{ ${Type.typeName(Object.keys(of), key => `${key}: ${of[key]!.name}`, '; ')} }`,
+      `{ ${typeName(Object.keys(of), key => `${key}: ${of[key]!.name}`, '; ')} }`,
       //----------------------------------------------------------------------------------------------------------------
       (input): input is { [Key in keyof Of]: TypeOf<Of[Key]> } =>
         isObject(input) && Object.keys(of).every(key => of[key]!.is(input[key])),

@@ -5,33 +5,30 @@
 import type { Decoder, Encode, Encoder, Is, Validate, Validation, ValidationError } from '../types';
 import { left, right } from '../either';
 
-class Type<T, O = T, I = unknown> implements Decoder<I, T>, Encoder<T, O> {
-  readonly _I!: I;
-  readonly _O!: O;
-  readonly _T!: T;
+class Type<Type, Output = Type, Input = unknown> implements Decoder<Input, Type>, Encoder<Type, Output> {
+  readonly INPUT!: Input; // typescript
+
+  readonly OUTPUT!: Output; // typescript
+
+  readonly TYPE!: Type; // typescript
 
   constructor(
     readonly name: string,
-    readonly is: Is<T>,
-    readonly validate: Validate<I, T>,
-    readonly encode: Encode<T, O>
+    readonly is: Is<Type>,
+    readonly validate: Validate<Input, Type>,
+    readonly encode: Encode<Type, Output>
   ) {}
 
-  decode = (i: I): Validation<T> => {
-    return this.validate(i, [{ input: i, key: '', type: this }]);
+  decode = (input: Input): Validation<Type> => {
+    return this.validate(input, [{ input, key: '', type: this }]);
   };
 
-  left<T>(errors: ValidationError[]): Validation<T> {
+  left<Type>(errors: ValidationError[]): Validation<Type> {
     return left(errors);
   }
 
-  right<T>(t: T): Validation<T> {
-    return right(t);
-  }
-
-  // dokončiť
-  static typeName<Keys extends any[]>(keys: Keys, on: (key: Keys[number]) => string, $: string): string {
-    return keys.reduce(($$, key, i) => ($$ += i === 0 ? on(key) : $ + on(key)), '');
+  right<Type>(type: Type): Validation<Type> {
+    return right(type);
   }
 }
 

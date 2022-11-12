@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-import * as t from '../index';
+import * as t from '..';
 import fs from 'fs';
 
 async function $() {

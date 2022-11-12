@@ -6,6 +6,7 @@ import type { TypeOf, ValidationError } from '../types';
 import Type from '../helpers/Type';
 import identity from '../helpers/identity';
 import { isLeft } from '../either';
+import typeName from '../helpers/typeName';
 
 type IntersectionTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1 }
   ? TypeOf<Of[0]>
@@ -20,7 +21,7 @@ type IntersectionTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { le
 class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<IntersectionTypeC<Of>> {
   constructor(readonly of: Of) {
     super(
-      Type.typeName(of, type => type.name, ' & '),
+      typeName(of, type => type.name, ' & '),
       //----------------------------------------------------------------------------------------------------------------
       (input): input is IntersectionTypeC<Of> => of.every(type => type.is(input)),
       //----------------------------------------------------------------------------------------------------------------

@@ -2,12 +2,12 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { TypeOf, ValidationError } from '../types';
+import type { Any, TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
 import identity from '../helpers/identity';
 
-class ArrayType<Of extends Type<any>> extends Type<TypeOf<Of>[]> {
+class ArrayType<Of extends Any> extends Type<TypeOf<Of>[]> {
   constructor(readonly of: Of) {
     super(
       `${of.name}[]`,

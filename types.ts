@@ -51,8 +51,8 @@ export interface Mixed extends Type<any, any, unknown> {}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export type InputOf<Of extends Any> = Of['_I'];
+export type InputOf<Of extends Any> = Of['INPUT'];
 
-export type OutputOf<Of extends Any> = Of['_O'];
+export type OutputOf<Of extends Any> = Of['OUTPUT'];
 
-export type TypeOf<Of extends Any> = Of['_T'];
+export type TypeOf<Of extends Any> = Of['TYPE'];
