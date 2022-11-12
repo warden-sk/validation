@@ -3,7 +3,6 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "module": "CommonJS",
-    "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "strict": true,
     "target": "ESNext"
