@@ -2,14 +2,14 @@
  * Copyright 2022 Marek Kobida
  */
 
-import UndefinedType from '../../../types/primitives/UndefinedType';
+import NullType from '../../../types/primitives/NullType';
 
-const type = new UndefinedType();
+const type = new NullType();
 
-test('UndefinedType.decode', () => {
-  expect(type.decode(undefined)).toStrictEqual({
+test('NullType.decode', () => {
+  expect(type.decode(null)).toStrictEqual({
     $: 'Right',
-    right: undefined,
+    right: null,
   });
 
   expect(type.decode(0)).toStrictEqual({
@@ -29,20 +29,20 @@ test('UndefinedType.decode', () => {
   });
 });
 
-test('UndefinedType.encode', () => {
-  expect(type.encode(undefined)).toBe(undefined);
+test('NullType.encode', () => {
+  expect(type.encode(null)).toBe(null);
 });
 
-test('UndefinedType.is', () => {
-  expect(type.is(undefined)).toBe(true);
+test('NullType.is', () => {
+  expect(type.is(null)).toBe(true);
   expect(type.is(0)).toBe(false);
 });
 
-test('UndefinedType.name', () => {
-  expect(type.name).toBe('undefined');
+test('NullType.name', () => {
+  expect(type.name).toBe('null');
 });
 
-test('UndefinedType.validate', () => {
+test('NullType.validate', () => {
   expect(type.validate(0, [])).toStrictEqual({
     $: 'Left',
     left: [

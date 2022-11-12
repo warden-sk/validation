@@ -6,12 +6,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const UndefinedType_1 = __importDefault(require("../../../types/primitives/UndefinedType"));
-const type = new UndefinedType_1.default();
-test('UndefinedType.decode', () => {
-    expect(type.decode(undefined)).toStrictEqual({
+const NullType_1 = __importDefault(require("../../../types/primitives/NullType"));
+const type = new NullType_1.default();
+test('NullType.decode', () => {
+    expect(type.decode(null)).toStrictEqual({
         $: 'Right',
-        right: undefined,
+        right: null,
     });
     expect(type.decode(0)).toStrictEqual({
         $: 'Left',
@@ -29,17 +29,17 @@ test('UndefinedType.decode', () => {
         ],
     });
 });
-test('UndefinedType.encode', () => {
-    expect(type.encode(undefined)).toBe(undefined);
+test('NullType.encode', () => {
+    expect(type.encode(null)).toBe(null);
 });
-test('UndefinedType.is', () => {
-    expect(type.is(undefined)).toBe(true);
+test('NullType.is', () => {
+    expect(type.is(null)).toBe(true);
     expect(type.is(0)).toBe(false);
 });
-test('UndefinedType.name', () => {
-    expect(type.name).toBe('undefined');
+test('NullType.name', () => {
+    expect(type.name).toBe('null');
 });
-test('UndefinedType.validate', () => {
+test('NullType.validate', () => {
     expect(type.validate(0, [])).toStrictEqual({
         $: 'Left',
         left: [

@@ -7,6 +7,11 @@ import StringType from '../../../types/primitives/StringType';
 const type = new StringType();
 
 test('StringType.decode', () => {
+  expect(type.decode('A')).toStrictEqual({
+    $: 'Right',
+    right: 'A',
+  });
+
   expect(type.decode(0)).toStrictEqual({
     $: 'Left',
     left: [
@@ -21,17 +26,17 @@ test('StringType.decode', () => {
         input: 0,
       },
     ],
-  });
-
-  expect(type.decode('A')).toStrictEqual({
-    $: 'Right',
-    right: 'A',
   });
 });
 
 test('StringType.decode with RegExp pattern', () => {
   const type = new StringType({ pattern: /[0-9]+/ });
 
+  expect(type.decode('0')).toStrictEqual({
+    $: 'Right',
+    right: '0',
+  });
+
   expect(type.decode(0)).toStrictEqual({
     $: 'Left',
     left: [
@@ -46,11 +51,6 @@ test('StringType.decode with RegExp pattern', () => {
         input: 0,
       },
     ],
-  });
-
-  expect(type.decode('0')).toStrictEqual({
-    $: 'Right',
-    right: '0',
   });
 });
 
@@ -59,8 +59,8 @@ test('StringType.encode', () => {
 });
 
 test('StringType.is', () => {
-  expect(type.is(0)).toBe(false);
   expect(type.is('A')).toBe(true);
+  expect(type.is(0)).toBe(false);
 });
 
 test('StringType.name', () => {
