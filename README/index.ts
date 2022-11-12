@@ -13,9 +13,9 @@ async function $() {
   rows = [...rows, '', '## Types', '| # | Type |', '| ---: | ---: |'];
 
   for (const i in Object.keys(t)) {
-    const name = Object.keys(t)[i];
+    const name = Object.keys(t)[i]!;
 
-    rows = [...rows, `| ${+i + 1} | ${name} |`];
+    rows = [...rows, `| ${+i + 1} | [${name}](#${name.toLocaleLowerCase()}) |`];
   }
 
   const files: [keyof typeof t, number, number][] = [
