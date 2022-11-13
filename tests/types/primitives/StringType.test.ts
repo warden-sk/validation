@@ -4,13 +4,15 @@
 
 import * as t from '../../../next';
 
+const type = t.string();
+
 test('StringType.decode', () => {
-  expect(t.string().decode('A')).toStrictEqual({
+  expect(type.decode('A')).toStrictEqual({
     $: 'Right',
     right: 'A',
   });
 
-  expect(t.string().decode(0)).toStrictEqual({
+  expect(type.decode(0)).toStrictEqual({
     $: 'Left',
     left: [
       {
@@ -18,7 +20,7 @@ test('StringType.decode', () => {
           {
             input: 0,
             key: '',
-            type: t.string(),
+            type,
           },
         ],
         input: 0,
@@ -53,20 +55,20 @@ test('StringType.decode with RegExp pattern', () => {
 });
 
 test('StringType.encode', () => {
-  expect(t.string().encode('A')).toBe('A');
+  expect(type.encode('A')).toBe('A');
 });
 
 test('StringType.is', () => {
-  expect(t.string().is('A')).toBe(true);
-  expect(t.string().is(0)).toBe(false);
+  expect(type.is('A')).toBe(true);
+  expect(type.is(0)).toBe(false);
 });
 
 test('StringType.name', () => {
-  expect(t.string().name).toBe('string');
+  expect(type.name).toBe('string');
 });
 
 test('StringType.validate', () => {
-  expect(t.string().validate(0, [])).toStrictEqual({
+  expect(type.validate(0, [])).toStrictEqual({
     $: 'Left',
     left: [
       {

@@ -4,13 +4,15 @@
 
 import * as t from '../../../next';
 
+const type = t.number;
+
 test('NumberType.decode', () => {
-  expect(t.number.decode(0)).toStrictEqual({
+  expect(type.decode(0)).toStrictEqual({
     $: 'Right',
     right: 0,
   });
 
-  expect(t.number.decode('A')).toStrictEqual({
+  expect(type.decode('A')).toStrictEqual({
     $: 'Left',
     left: [
       {
@@ -18,7 +20,7 @@ test('NumberType.decode', () => {
           {
             input: 'A',
             key: '',
-            type: t.number,
+            type,
           },
         ],
         input: 'A',
@@ -28,20 +30,20 @@ test('NumberType.decode', () => {
 });
 
 test('NumberType.encode', () => {
-  expect(t.number.encode(0)).toBe(0);
+  expect(type.encode(0)).toBe(0);
 });
 
 test('NumberType.is', () => {
-  expect(t.number.is(0)).toBe(true);
-  expect(t.number.is('A')).toBe(false);
+  expect(type.is(0)).toBe(true);
+  expect(type.is('A')).toBe(false);
 });
 
 test('NumberType.name', () => {
-  expect(t.number.name).toBe('number');
+  expect(type.name).toBe('number');
 });
 
 test('NumberType.validate', () => {
-  expect(t.number.validate('A', [])).toStrictEqual({
+  expect(type.validate('A', [])).toStrictEqual({
     $: 'Left',
     left: [
       {

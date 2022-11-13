@@ -5,13 +5,15 @@
 import * as t from '../../../next';
 
 function on(of: boolean | number | string) {
+  const type = t.literal(of);
+
   test(`LiteralType.decode with ${typeof of}`, () => {
-    expect(t.literal(of).decode(of)).toStrictEqual({
+    expect(type.decode(of)).toStrictEqual({
       $: 'Right',
       right: of,
     });
 
-    expect(t.literal(of).decode(undefined)).toStrictEqual({
+    expect(type.decode(undefined)).toStrictEqual({
       $: 'Left',
       left: [
         {
@@ -19,7 +21,7 @@ function on(of: boolean | number | string) {
             {
               input: undefined,
               key: '',
-              type: t.literal(of),
+              type,
             },
           ],
           input: undefined,
@@ -29,16 +31,16 @@ function on(of: boolean | number | string) {
   });
 
   test(`LiteralType.encode with ${typeof of}`, () => {
-    expect(t.literal(of).encode(of)).toBe(of);
+    expect(type.encode(of)).toBe(of);
   });
 
   test(`LiteralType.is with ${typeof of}`, () => {
-    expect(t.literal(of).is(of)).toBe(true);
-    expect(t.literal(of).is(undefined)).toBe(false);
+    expect(type.is(of)).toBe(true);
+    expect(type.is(undefined)).toBe(false);
   });
 
   test(`LiteralType.name with ${typeof of}`, () => {
-    expect(t.literal(of).name).toBe(typeof of === 'string' ? `"${of}"` : of.toString());
+    expect(type.name).toBe(typeof of === 'string' ? `"${of}"` : of.toString());
   });
 }
 

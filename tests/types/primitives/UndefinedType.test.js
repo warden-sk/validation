@@ -27,12 +27,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const t = __importStar(require("../../../next"));
+const type = t.undefined;
 test('UndefinedType.decode', () => {
-    expect(t.undefined.decode(undefined)).toStrictEqual({
+    expect(type.decode(undefined)).toStrictEqual({
         $: 'Right',
         right: undefined,
     });
-    expect(t.undefined.decode(0)).toStrictEqual({
+    expect(type.decode(0)).toStrictEqual({
         $: 'Left',
         left: [
             {
@@ -40,7 +41,7 @@ test('UndefinedType.decode', () => {
                     {
                         input: 0,
                         key: '',
-                        type: t.undefined,
+                        type,
                     },
                 ],
                 input: 0,
@@ -49,17 +50,17 @@ test('UndefinedType.decode', () => {
     });
 });
 test('UndefinedType.encode', () => {
-    expect(t.undefined.encode(undefined)).toBe(undefined);
+    expect(type.encode(undefined)).toBe(undefined);
 });
 test('UndefinedType.is', () => {
-    expect(t.undefined.is(undefined)).toBe(true);
-    expect(t.undefined.is(0)).toBe(false);
+    expect(type.is(undefined)).toBe(true);
+    expect(type.is(0)).toBe(false);
 });
 test('UndefinedType.name', () => {
-    expect(t.undefined.name).toBe('undefined');
+    expect(type.name).toBe('undefined');
 });
 test('UndefinedType.validate', () => {
-    expect(t.undefined.validate(0, [])).toStrictEqual({
+    expect(type.validate(0, [])).toStrictEqual({
         $: 'Left',
         left: [
             {

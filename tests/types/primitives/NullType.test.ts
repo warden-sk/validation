@@ -4,13 +4,15 @@
 
 import * as t from '../../../next';
 
+const type = t.null;
+
 test('NullType.decode', () => {
-  expect(t.null.decode(null)).toStrictEqual({
+  expect(type.decode(null)).toStrictEqual({
     $: 'Right',
     right: null,
   });
 
-  expect(t.null.decode(0)).toStrictEqual({
+  expect(type.decode(0)).toStrictEqual({
     $: 'Left',
     left: [
       {
@@ -18,7 +20,7 @@ test('NullType.decode', () => {
           {
             input: 0,
             key: '',
-            type: t.null,
+            type,
           },
         ],
         input: 0,
@@ -28,20 +30,20 @@ test('NullType.decode', () => {
 });
 
 test('NullType.encode', () => {
-  expect(t.null.encode(null)).toBe(null);
+  expect(type.encode(null)).toBe(null);
 });
 
 test('NullType.is', () => {
-  expect(t.null.is(null)).toBe(true);
-  expect(t.null.is(0)).toBe(false);
+  expect(type.is(null)).toBe(true);
+  expect(type.is(0)).toBe(false);
 });
 
 test('NullType.name', () => {
-  expect(t.null.name).toBe('null');
+  expect(type.name).toBe('null');
 });
 
 test('NullType.validate', () => {
-  expect(t.null.validate(0, [])).toStrictEqual({
+  expect(type.validate(0, [])).toStrictEqual({
     $: 'Left',
     left: [
       {
