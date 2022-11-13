@@ -2,17 +2,15 @@
  * Copyright 2022 Marek Kobida
  */
 
-import NullType from '../../../types/primitives/NullType';
-
-const type = new NullType();
+import * as t from '../../../next';
 
 test('NullType.decode', () => {
-  expect(type.decode(null)).toStrictEqual({
+  expect(t.null.decode(null)).toStrictEqual({
     $: 'Right',
     right: null,
   });
 
-  expect(type.decode(0)).toStrictEqual({
+  expect(t.null.decode(0)).toStrictEqual({
     $: 'Left',
     left: [
       {
@@ -20,7 +18,7 @@ test('NullType.decode', () => {
           {
             input: 0,
             key: '',
-            type,
+            type: t.null,
           },
         ],
         input: 0,
@@ -30,20 +28,20 @@ test('NullType.decode', () => {
 });
 
 test('NullType.encode', () => {
-  expect(type.encode(null)).toBe(null);
+  expect(t.null.encode(null)).toBe(null);
 });
 
 test('NullType.is', () => {
-  expect(type.is(null)).toBe(true);
-  expect(type.is(0)).toBe(false);
+  expect(t.null.is(null)).toBe(true);
+  expect(t.null.is(0)).toBe(false);
 });
 
 test('NullType.name', () => {
-  expect(type.name).toBe('null');
+  expect(t.null.name).toBe('null');
 });
 
 test('NullType.validate', () => {
-  expect(type.validate(0, [])).toStrictEqual({
+  expect(t.null.validate(0, [])).toStrictEqual({
     $: 'Left',
     left: [
       {

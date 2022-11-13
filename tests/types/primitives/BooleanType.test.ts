@@ -2,17 +2,15 @@
  * Copyright 2022 Marek Kobida
  */
 
-import BooleanType from '../../../types/primitives/BooleanType';
-
-const type = new BooleanType();
+import * as t from '../../../next';
 
 test('BooleanType.decode', () => {
-  expect(type.decode(true)).toStrictEqual({
+  expect(t.boolean.decode(true)).toStrictEqual({
     $: 'Right',
     right: true,
   });
 
-  expect(type.decode(0)).toStrictEqual({
+  expect(t.boolean.decode(0)).toStrictEqual({
     $: 'Left',
     left: [
       {
@@ -20,7 +18,7 @@ test('BooleanType.decode', () => {
           {
             input: 0,
             key: '',
-            type,
+            type: t.boolean,
           },
         ],
         input: 0,
@@ -30,20 +28,20 @@ test('BooleanType.decode', () => {
 });
 
 test('BooleanType.encode', () => {
-  expect(type.encode(true)).toBe(true);
+  expect(t.boolean.encode(true)).toBe(true);
 });
 
 test('BooleanType.is', () => {
-  expect(type.is(true)).toBe(true);
-  expect(type.is(0)).toBe(false);
+  expect(t.boolean.is(true)).toBe(true);
+  expect(t.boolean.is(0)).toBe(false);
 });
 
 test('BooleanType.name', () => {
-  expect(type.name).toBe('boolean');
+  expect(t.boolean.name).toBe('boolean');
 });
 
 test('BooleanType.validate', () => {
-  expect(type.validate(0, [])).toStrictEqual({
+  expect(t.boolean.validate(0, [])).toStrictEqual({
     $: 'Left',
     left: [
       {

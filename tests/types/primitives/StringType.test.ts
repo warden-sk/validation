@@ -2,17 +2,15 @@
  * Copyright 2022 Marek Kobida
  */
 
-import StringType from '../../../types/primitives/StringType';
-
-const type = new StringType();
+import * as t from '../../../next';
 
 test('StringType.decode', () => {
-  expect(type.decode('A')).toStrictEqual({
+  expect(t.string().decode('A')).toStrictEqual({
     $: 'Right',
     right: 'A',
   });
 
-  expect(type.decode(0)).toStrictEqual({
+  expect(t.string().decode(0)).toStrictEqual({
     $: 'Left',
     left: [
       {
@@ -20,7 +18,7 @@ test('StringType.decode', () => {
           {
             input: 0,
             key: '',
-            type,
+            type: t.string(),
           },
         ],
         input: 0,
@@ -30,7 +28,7 @@ test('StringType.decode', () => {
 });
 
 test('StringType.decode with RegExp pattern', () => {
-  const type = new StringType({ pattern: /[0-9]+/ });
+  const type = t.string({ pattern: /[0-9]+/ });
 
   expect(type.decode('0')).toStrictEqual({
     $: 'Right',
@@ -55,20 +53,20 @@ test('StringType.decode with RegExp pattern', () => {
 });
 
 test('StringType.encode', () => {
-  expect(type.encode('A')).toBe('A');
+  expect(t.string().encode('A')).toBe('A');
 });
 
 test('StringType.is', () => {
-  expect(type.is('A')).toBe(true);
-  expect(type.is(0)).toBe(false);
+  expect(t.string().is('A')).toBe(true);
+  expect(t.string().is(0)).toBe(false);
 });
 
 test('StringType.name', () => {
-  expect(type.name).toBe('string');
+  expect(t.string().name).toBe('string');
 });
 
 test('StringType.validate', () => {
-  expect(type.validate(0, [])).toStrictEqual({
+  expect(t.string().validate(0, [])).toStrictEqual({
     $: 'Left',
     left: [
       {

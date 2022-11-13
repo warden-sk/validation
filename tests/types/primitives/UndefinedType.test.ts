@@ -2,17 +2,15 @@
  * Copyright 2022 Marek Kobida
  */
 
-import UndefinedType from '../../../types/primitives/UndefinedType';
-
-const type = new UndefinedType();
+import * as t from '../../../next';
 
 test('UndefinedType.decode', () => {
-  expect(type.decode(undefined)).toStrictEqual({
+  expect(t.undefined.decode(undefined)).toStrictEqual({
     $: 'Right',
     right: undefined,
   });
 
-  expect(type.decode(0)).toStrictEqual({
+  expect(t.undefined.decode(0)).toStrictEqual({
     $: 'Left',
     left: [
       {
@@ -20,7 +18,7 @@ test('UndefinedType.decode', () => {
           {
             input: 0,
             key: '',
-            type,
+            type: t.undefined,
           },
         ],
         input: 0,
@@ -30,20 +28,20 @@ test('UndefinedType.decode', () => {
 });
 
 test('UndefinedType.encode', () => {
-  expect(type.encode(undefined)).toBe(undefined);
+  expect(t.undefined.encode(undefined)).toBe(undefined);
 });
 
 test('UndefinedType.is', () => {
-  expect(type.is(undefined)).toBe(true);
-  expect(type.is(0)).toBe(false);
+  expect(t.undefined.is(undefined)).toBe(true);
+  expect(t.undefined.is(0)).toBe(false);
 });
 
 test('UndefinedType.name', () => {
-  expect(type.name).toBe('undefined');
+  expect(t.undefined.name).toBe('undefined');
 });
 
 test('UndefinedType.validate', () => {
-  expect(type.validate(0, [])).toStrictEqual({
+  expect(t.undefined.validate(0, [])).toStrictEqual({
     $: 'Left',
     left: [
       {

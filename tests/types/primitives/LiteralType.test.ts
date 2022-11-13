@@ -2,18 +2,16 @@
  * Copyright 2022 Marek Kobida
  */
 
-import LiteralType from '../../../types/primitives/LiteralType';
+import * as t from '../../../next';
 
-function on(input: boolean | number | string) {
-  const type = new LiteralType(input);
-
-  test(`LiteralType.decode with ${typeof input}`, () => {
-    expect(type.decode(input)).toStrictEqual({
+function on(of: boolean | number | string) {
+  test(`LiteralType.decode with ${typeof of}`, () => {
+    expect(t.literal(of).decode(of)).toStrictEqual({
       $: 'Right',
-      right: input,
+      right: of,
     });
 
-    expect(type.decode(undefined)).toStrictEqual({
+    expect(t.literal(of).decode(undefined)).toStrictEqual({
       $: 'Left',
       left: [
         {
@@ -21,7 +19,7 @@ function on(input: boolean | number | string) {
             {
               input: undefined,
               key: '',
-              type,
+              type: t.literal(of),
             },
           ],
           input: undefined,
@@ -30,17 +28,17 @@ function on(input: boolean | number | string) {
     });
   });
 
-  test(`LiteralType.encode with ${typeof input}`, () => {
-    expect(type.encode(input)).toBe(input);
+  test(`LiteralType.encode with ${typeof of}`, () => {
+    expect(t.literal(of).encode(of)).toBe(of);
   });
 
-  test(`LiteralType.is with ${typeof input}`, () => {
-    expect(type.is(input)).toBe(true);
-    expect(type.is(undefined)).toBe(false);
+  test(`LiteralType.is with ${typeof of}`, () => {
+    expect(t.literal(of).is(of)).toBe(true);
+    expect(t.literal(of).is(undefined)).toBe(false);
   });
 
-  test(`LiteralType.name with ${typeof input}`, () => {
-    expect(type.name).toBe(typeof input === 'string' ? `"${input}"` : input.toString());
+  test(`LiteralType.name with ${typeof of}`, () => {
+    expect(t.literal(of).name).toBe(typeof of === 'string' ? `"${of}"` : of.toString());
   });
 }
 
