@@ -28,37 +28,39 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const t = __importStar(require("../../../next"));
 function on(of) {
-    const type = t.literal(of);
-    test(`LiteralType.decode with ${typeof of}`, () => {
-        expect(type.decode(of)).toStrictEqual({
-            $: 'Right',
-            right: of,
+    describe(`LiteralType with ${typeof of}`, () => {
+        const type = t.literal(of);
+        test('LiteralType.decode', () => {
+            expect(type.decode(of)).toStrictEqual({
+                $: 'Right',
+                right: of,
+            });
+            expect(type.decode(undefined)).toStrictEqual({
+                $: 'Left',
+                left: [
+                    {
+                        context: [
+                            {
+                                input: undefined,
+                                key: '',
+                                type,
+                            },
+                        ],
+                        input: undefined,
+                    },
+                ],
+            });
         });
-        expect(type.decode(undefined)).toStrictEqual({
-            $: 'Left',
-            left: [
-                {
-                    context: [
-                        {
-                            input: undefined,
-                            key: '',
-                            type,
-                        },
-                    ],
-                    input: undefined,
-                },
-            ],
+        test('LiteralType.encode', () => {
+            expect(type.encode(of)).toBe(of);
         });
-    });
-    test(`LiteralType.encode with ${typeof of}`, () => {
-        expect(type.encode(of)).toBe(of);
-    });
-    test(`LiteralType.is with ${typeof of}`, () => {
-        expect(type.is(of)).toBe(true);
-        expect(type.is(undefined)).toBe(false);
-    });
-    test(`LiteralType.name with ${typeof of}`, () => {
-        expect(type.name).toBe(typeof of === 'string' ? `"${of}"` : of.toString());
+        test('LiteralType.is', () => {
+            expect(type.is(of)).toBe(true);
+            expect(type.is(undefined)).toBe(false);
+        });
+        test('LiteralType.name', () => {
+            expect(type.name).toBe(typeof of === 'string' ? `"${of}"` : of.toString());
+        });
     });
 }
 on(true);

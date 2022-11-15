@@ -35,8 +35,8 @@ function tryCatch(onRight, onLeft) {
     try {
         return right(onRight());
     }
-    catch (e) {
-        return left(onLeft(e));
+    catch (error) {
+        return left(onLeft(error));
     }
 }
 exports.tryCatch = tryCatch;
