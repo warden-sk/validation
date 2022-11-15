@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-import * as t from '../../../next';
+import * as t from '../../..';
 
 function on(of: boolean | number | string) {
   describe(`LiteralType with ${typeof of}`, () => {

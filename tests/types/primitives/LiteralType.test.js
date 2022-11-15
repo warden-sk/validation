@@ -26,7 +26,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const t = __importStar(require("../../../next"));
+const t = __importStar(require("../../.."));
 function on(of) {
     describe(`LiteralType with ${typeof of}`, () => {
         const type = t.literal(of);

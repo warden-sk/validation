@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-import * as t from '../../../next';
+import * as t from '../../..';
 
 test('BooleanType.decode', () => {
   expect(t.boolean.decode(true)).toStrictEqual({

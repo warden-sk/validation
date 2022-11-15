@@ -26,7 +26,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const t = __importStar(require("../../../next"));
+const t = __importStar(require("../../.."));
 const type = t.null;
 test('NullType.decode', () => {
     expect(type.decode(null)).toStrictEqual({
