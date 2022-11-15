@@ -14,14 +14,15 @@ import * as t from '@warden-sk/validation';
 | 5 | [literal](#literal) |
 | 6 | [null](#null) |
 | 7 | [number](#number) |
-| 8 | [string](#string) |
-| 9 | [tuple](#tuple) |
-| 10 | [undefined](#undefined) |
-| 11 | [union](#union) |
+| 8 | [regExp](#regexp) |
+| 9 | [string](#string) |
+| 10 | [tuple](#tuple) |
+| 11 | [undefined](#undefined) |
+| 12 | [union](#union) |
 
 ### array
 ```typescript
-const type = t.array(t.string());
+const type = t.array(t.string);
 
 type T = t.TypeOf<typeof type>;
 // type T = string[];
@@ -30,7 +31,7 @@ type T = t.TypeOf<typeof type>;
 ### interface
 ```typescript
 const type = t.interface({
-  firstName: t.string(),
+  firstName: t.string,
 });
 
 type T = t.TypeOf<typeof type>;
@@ -41,10 +42,10 @@ type T = t.TypeOf<typeof type>;
 ```typescript
 const type = t.intersection([
   t.interface({
-    firstName: t.string(),
+    firstName: t.string,
   }),
   t.interface({
-    lastName: t.string(),
+    lastName: t.string,
   }),
 ]);
 
@@ -62,7 +63,7 @@ type T = t.TypeOf<typeof type>;
 
 ### tuple
 ```typescript
-const type = t.tuple([t.number, t.string()]);
+const type = t.tuple([t.number, t.string]);
 
 type T = t.TypeOf<typeof type>;
 // type T = [number, string];
@@ -72,10 +73,10 @@ type T = t.TypeOf<typeof type>;
 ```typescript
 const type = t.union([
   t.interface({
-    firstName: t.string(),
+    firstName: t.string,
   }),
   t.interface({
-    lastName: t.string(),
+    lastName: t.string,
   }),
 ]);
 
