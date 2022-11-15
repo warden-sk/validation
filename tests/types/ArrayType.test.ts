@@ -4,7 +4,7 @@
 
 import * as t from '../..';
 
-const type = t.array(t.string());
+const type = t.array(t.string);
 
 test('ArrayType.decode', () => {
   expect(type.decode(['Marek', 'Kobida'])).toStrictEqual({

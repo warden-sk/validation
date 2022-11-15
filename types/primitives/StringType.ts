@@ -3,20 +3,13 @@
  */
 
 import Type from '../../helpers/Type';
-import UndefinedType from './UndefinedType';
 import identity from '../../helpers/identity';
 
 class StringType extends Type<string> {
   constructor(readonly $: { pattern?: RegExp } = {}) {
     super(
       'string',
-      (input): input is string => {
-        if (typeof input === 'string') {
-          return !(!new UndefinedType().is($.pattern) && !$.pattern.test(input));
-        }
-
-        return false;
-      },
+      (input): input is string => typeof input === 'string',
       (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
       identity
     );

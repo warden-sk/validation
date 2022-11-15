@@ -27,33 +27,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const t = __importStar(require("../../.."));
-const type = t.string();
+const type = t.string;
 test('StringType.decode', () => {
     expect(type.decode('A')).toStrictEqual({
         $: 'Right',
         right: 'A',
-    });
-    expect(type.decode(0)).toStrictEqual({
-        $: 'Left',
-        left: [
-            {
-                context: [
-                    {
-                        input: 0,
-                        key: '',
-                        type,
-                    },
-                ],
-                input: 0,
-            },
-        ],
-    });
-});
-test('StringType.decode with RegExp pattern', () => {
-    const type = t.string({ pattern: /[0-9]+/ });
-    expect(type.decode('0')).toStrictEqual({
-        $: 'Right',
-        right: '0',
     });
     expect(type.decode(0)).toStrictEqual({
         $: 'Left',
