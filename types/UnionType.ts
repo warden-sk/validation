@@ -5,7 +5,7 @@
 import type { Mixed, OutputOf, TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
-import identity from '../helpers/identity';
+import errorMessages from '../helpers/errorMessages';
 import typeName from '../helpers/typeName';
 
 //                         minimálne 2
@@ -36,7 +36,9 @@ class UnionType<Of extends [Mixed, Mixed, ...Mixed[]]> extends Type<TypeOf<Of[nu
 
         return this.left(errors);
       },
-      identity
+      () => {
+        throw new Error(errorMessages.FUNCTION_NOT_IMPLEMENTED); // dokončiť
+      }
     );
   }
 }

@@ -8,7 +8,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const either_1 = require("../either");
 const Type_1 = __importDefault(require("../helpers/Type"));
-const identity_1 = __importDefault(require("../helpers/identity"));
+const errorMessages_1 = __importDefault(require("../helpers/errorMessages"));
 const typeName_1 = __importDefault(require("../helpers/typeName"));
 //                         minimálne 2
 class UnionType extends Type_1.default {
@@ -32,7 +32,9 @@ class UnionType extends Type_1.default {
                 }
             }
             return this.left(errors);
-        }, identity_1.default);
+        }, () => {
+            throw new Error(errorMessages_1.default.FUNCTION_NOT_IMPLEMENTED); // dokončiť
+        });
         this.of = of;
     }
 }

@@ -7,7 +7,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Type_1 = __importDefault(require("../helpers/Type"));
-const identity_1 = __importDefault(require("../helpers/identity"));
+const errorMessages_1 = __importDefault(require("../helpers/errorMessages"));
 const either_1 = require("../either");
 const typeName_1 = __importDefault(require("../helpers/typeName"));
 class IntersectionType extends Type_1.default {
@@ -28,7 +28,9 @@ class IntersectionType extends Type_1.default {
                 }
             }
             return errors.length > 0 ? this.left(errors) : this.right(input);
-        }, identity_1.default);
+        }, () => {
+            throw new Error(errorMessages_1.default.FUNCTION_NOT_IMPLEMENTED); // dokončiť
+        });
         this.of = of;
     }
 }

@@ -7,9 +7,9 @@ import * as t from '../../next';
 const type = t.array(t.string());
 
 test('ArrayType.decode', () => {
-  expect(type.decode(['Marek Kobida'])).toStrictEqual({
+  expect(type.decode(['Marek', 'Kobida'])).toStrictEqual({
     $: 'Right',
-    right: ['Marek Kobida'],
+    right: ['Marek', 'Kobida'],
   });
 
   expect(type.decode(0)).toStrictEqual({
@@ -27,4 +27,15 @@ test('ArrayType.decode', () => {
       },
     ],
   });
+});
+
+test('ArrayType.is', () => {
+  expect(type.is(['Marek', 'Kobida'])).toBe(true);
+  expect(type.is([])).toBe(true);
+
+  expect(type.is(0)).toBe(false);
+});
+
+test('ArrayType.name', () => {
+  expect(type.name).toBe('string[]');
 });

@@ -5,7 +5,7 @@
 import type { Any, TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
-import identity from '../helpers/identity';
+import errorMessages from '../helpers/errorMessages';
 import isObject from '../helpers/isObject';
 import typeName from '../helpers/typeName';
 
@@ -42,7 +42,9 @@ class InterfaceType<Of extends { [key: string]: Any }> extends Type<{ [Key in ke
 
         return this.left([{ context, input }]);
       },
-      identity
+      () => {
+        throw new Error(errorMessages.FUNCTION_NOT_IMPLEMENTED); // dokončiť
+      }
     );
   }
 }

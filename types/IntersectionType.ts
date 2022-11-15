@@ -4,7 +4,7 @@
 
 import type { TypeOf, ValidationError } from '../types';
 import Type from '../helpers/Type';
-import identity from '../helpers/identity';
+import errorMessages from '../helpers/errorMessages';
 import { isLeft } from '../either';
 import typeName from '../helpers/typeName';
 
@@ -41,7 +41,9 @@ class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<Inte
 
         return errors.length > 0 ? this.left(errors) : this.right(input as IntersectionTypeC<Of>);
       },
-      identity
+      () => {
+        throw new Error(errorMessages.FUNCTION_NOT_IMPLEMENTED); // dokončiť
+      }
     );
   }
 }
