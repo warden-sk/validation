@@ -2,7 +2,7 @@
  * Copyright 2022 Marek Kobida
  */
 
-export type { InputOf, OutputOf, TypeOf } from './types';
+import type { Any, Mixed } from './types';
 
 import ArrayType from './types/ArrayType';
 import BooleanType from './types/primitives/BooleanType';
@@ -16,19 +16,19 @@ import TupleType from './types/TupleType';
 import UndefinedType from './types/primitives/UndefinedType';
 import UnionType from './types/UnionType';
 
-type $<T> = T extends new (...$: infer $) => any ? $ : never;
+export type { InputOf, OutputOf, TypeOf } from './types';
 
-const array = (...$: $<typeof ArrayType>) => new ArrayType(...$);
-const interfaceType = (...$: $<typeof InterfaceType>) => new InterfaceType(...$);
-const intersection = (...$: $<typeof IntersectionType>) => new IntersectionType(...$);
-const tuple = (...$: $<typeof TupleType>) => new TupleType(...$);
-const union = (...$: $<typeof UnionType>) => new UnionType(...$);
+const array = <Of extends Any>(of: Of) => new ArrayType(of);
+const interfaceType = <Of extends { [key: string]: Any }>(of: Of) => new InterfaceType(of);
+const intersection = <Of extends [Any, ...Any[]]>(of: Of) => new IntersectionType(of);
+const tuple = <Of extends [Any, ...Any[]]>(of: Of) => new TupleType(of);
+const union = <Of extends [Mixed, Mixed, ...Mixed[]]>(of: Of) => new UnionType(of);
 
 const boolean = new BooleanType();
-const literal = (of: boolean | number | string) => new LiteralType(of);
+const literal = <Of extends boolean | number | string>(of: Of) => new LiteralType(of);
 const nullType = new NullType();
 const number = new NumberType();
-const string = (...$: $<typeof StringType>) => new StringType(...$);
+const string = ($: { pattern?: RegExp } = {}) => new StringType($);
 const undefined = new UndefinedType();
 
 export {
