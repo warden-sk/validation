@@ -2,12 +2,12 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { Any, TypeOf, ValidationError } from '../types';
+import type { Mixed, OutputOf, TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
 import errorMessages from '../helpers/errorMessages';
 
-class ArrayType<Of extends Any> extends Type<TypeOf<Of>[]> {
+class ArrayType<Of extends Mixed> extends Type<TypeOf<Of>[], OutputOf<Of>[], unknown> {
   constructor(readonly of: Of) {
     super(
       `${of.name}[]`,
@@ -18,21 +18,15 @@ class ArrayType<Of extends Any> extends Type<TypeOf<Of>[]> {
         if (Array.isArray(input)) {
           let errors: ValidationError[] = [];
 
-          const output: TypeOf<Of>[] = [];
-
           for (const key in input) {
             const validation = of.validate(input[key], [...context, { input: input[key], key, type: of }]);
 
             if (isLeft(validation)) {
               errors = [...errors, ...validation.left];
             }
-
-            if (isRight(validation)) {
-              output[key] = validation.right;
-            }
           }
 
-          return errors.length > 0 ? this.left(errors) : this.right(output);
+          return errors.length > 0 ? this.left(errors) : this.right(input);
         }
 
         return this.left([{ context, input }]);

@@ -8,7 +8,6 @@ import Type from '../helpers/Type';
 import errorMessages from '../helpers/errorMessages';
 import typeName from '../helpers/typeName';
 
-//                         minimálne 2
 class UnionType<Of extends [Mixed, Mixed, ...Mixed[]]> extends Type<TypeOf<Of[number]>, OutputOf<Of[number]>, unknown> {
   constructor(readonly of: Of) {
     super(

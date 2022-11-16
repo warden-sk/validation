@@ -10,7 +10,6 @@ const either_1 = require("../either");
 const Type_1 = __importDefault(require("../helpers/Type"));
 const errorMessages_1 = __importDefault(require("../helpers/errorMessages"));
 const typeName_1 = __importDefault(require("../helpers/typeName"));
-//                         minimálne 2
 class UnionType extends Type_1.default {
     of;
     constructor(of) {

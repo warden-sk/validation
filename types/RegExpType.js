@@ -12,12 +12,7 @@ const identity_1 = __importDefault(require("../helpers/identity"));
 class RegExpType extends Type_1.default {
     pattern;
     constructor(pattern) {
-        super('string', (input) => {
-            if (new StringType_1.default().is(input)) {
-                return pattern.test(input);
-            }
-            return false;
-        }, (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])), identity_1.default);
+        super('string', (input) => (new StringType_1.default().is(input) ? pattern.test(input) : false), (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])), identity_1.default);
         this.pattern = pattern;
     }
 }

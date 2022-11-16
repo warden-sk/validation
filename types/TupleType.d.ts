@@ -1,6 +1,6 @@
-import type { TypeOf } from '../types';
+import type { Mixed, TypeOf } from '../types';
 import Type from '../helpers/Type';
-declare type TupleTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends {
+declare type TupleTypeC<Of extends [Mixed, ...Mixed[]]> = Of extends {
     length: 1;
 } ? [TypeOf<Of[0]>] : Of extends {
     length: 2;
@@ -9,7 +9,7 @@ declare type TupleTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends {
 } ? [TypeOf<Of[0]>, TypeOf<Of[1]>, TypeOf<Of[2]>] : Of extends {
     length: 4;
 } ? [TypeOf<Of[0]>, TypeOf<Of[1]>, TypeOf<Of[2]>, TypeOf<Of[3]>] : unknown;
-declare class TupleType<Of extends [Type<any>, ...Type<any>[]]> extends Type<TupleTypeC<Of>> {
+declare class TupleType<Of extends [Mixed, ...Mixed[]]> extends Type<TupleTypeC<Of>> {
     readonly of: Of;
     constructor(of: Of);
 }

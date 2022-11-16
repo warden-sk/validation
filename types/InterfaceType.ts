@@ -2,14 +2,14 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { Any, TypeOf, ValidationError } from '../types';
+import type { Mixed, TypeOf, ValidationError } from '../types';
 import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
 import errorMessages from '../helpers/errorMessages';
 import isObject from '../helpers/isObject';
 import typeName from '../helpers/typeName';
 
-class InterfaceType<Of extends { [key: string]: Any }> extends Type<{ [Key in keyof Of]: TypeOf<Of[Key]> }> {
+class InterfaceType<Of extends { [key: string]: Mixed }> extends Type<{ [Key in keyof Of]: TypeOf<Of[Key]> }> {
   constructor(readonly of: Of) {
     super(
       `{ ${typeName(Object.keys(of), key => `${key}: ${of[key]!.name}`, '; ')} }`,

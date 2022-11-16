@@ -2,13 +2,13 @@
  * Copyright 2022 Marek Kobida
  */
 
-import type { TypeOf, ValidationError } from '../types';
+import type { Mixed, TypeOf, ValidationError } from '../types';
 import Type from '../helpers/Type';
 import errorMessages from '../helpers/errorMessages';
 import { isLeft } from '../either';
 import typeName from '../helpers/typeName';
 
-type IntersectionTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { length: 1 }
+type IntersectionTypeC<Of extends [Mixed, Mixed, ...Mixed[]]> = Of extends { length: 1 }
   ? TypeOf<Of[0]>
   : Of extends { length: 2 }
   ? TypeOf<Of[0]> & TypeOf<Of[1]>
@@ -18,7 +18,7 @@ type IntersectionTypeC<Of extends [Type<any>, ...Type<any>[]]> = Of extends { le
   ? TypeOf<Of[0]> & TypeOf<Of[1]> & TypeOf<Of[2]> & TypeOf<Of[3]>
   : unknown;
 
-class IntersectionType<Of extends [Type<any>, ...Type<any>[]]> extends Type<IntersectionTypeC<Of>> {
+class IntersectionType<Of extends [Mixed, Mixed, ...Mixed[]]> extends Type<IntersectionTypeC<Of>> {
   constructor(readonly of: Of) {
     super(
       typeName(of, type => type.name, ' & '),

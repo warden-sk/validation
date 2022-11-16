@@ -21,7 +21,7 @@ export type { InputOf, OutputOf, TypeOf } from './types';
 
 const regExp = (pattern: RegExp) => new RegExpType(pattern);
 
-const array = <Of extends Any>(of: Of) => new ArrayType(of);
+const array = <Of extends Mixed>(of: Of) => new ArrayType(of);
 const interfaceType = <Of extends { [key: string]: Any }>(of: Of) => new InterfaceType(of);
 const intersection = <Of extends [Any, ...Any[]]>(of: Of) => new IntersectionType(of);
 const tuple = <Of extends [Any, ...Any[]]>(of: Of) => new TupleType(of);

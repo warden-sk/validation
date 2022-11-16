@@ -13,11 +13,11 @@ import UndefinedType from './types/primitives/UndefinedType';
 import UnionType from './types/UnionType';
 export type { InputOf, OutputOf, TypeOf } from './types';
 declare const regExp: (pattern: RegExp) => RegExpType;
-declare const array: <Of extends Any>(of: Of) => ArrayType<Of>;
+declare const array: <Of extends Mixed>(of: Of) => ArrayType<Of>;
 declare const interfaceType: <Of extends {
     [key: string]: Any;
 }>(of: Of) => InterfaceType<Of>;
-declare const intersection: <Of extends [Any, ...Any[]]>(of: Of) => IntersectionType<Of>;
+declare const intersection: <Of extends [Any, ...Any[]]>(of: Of) => IntersectionType<[Mixed, Mixed, ...Mixed[]]>;
 declare const tuple: <Of extends [Any, ...Any[]]>(of: Of) => TupleType<Of>;
 declare const union: <Of extends [Mixed, Mixed, ...Mixed[]]>(of: Of) => UnionType<Of>;
 declare const boolean: BooleanType;

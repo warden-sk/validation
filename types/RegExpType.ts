@@ -10,13 +10,7 @@ class RegExpType extends Type<string> {
   constructor(readonly pattern: RegExp) {
     super(
       'string',
-      (input): input is string => {
-        if (new StringType().is(input)) {
-          return pattern.test(input);
-        }
-
-        return false;
-      },
+      (input): input is string => (new StringType().is(input) ? pattern.test(input) : false),
       (input, context) => (this.is(input) ? this.right(input) : this.left([{ context, input }])),
       identity
     );

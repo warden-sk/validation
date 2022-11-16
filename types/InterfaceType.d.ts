@@ -1,7 +1,7 @@
-import type { Any, TypeOf } from '../types';
+import type { Mixed, TypeOf } from '../types';
 import Type from '../helpers/Type';
 declare class InterfaceType<Of extends {
-    [key: string]: Any;
+    [key: string]: Mixed;
 }> extends Type<{
     [Key in keyof Of]: TypeOf<Of[Key]>;
 }> {
