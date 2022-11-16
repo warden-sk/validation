@@ -19,17 +19,13 @@ class ArrayType extends Type_1.default {
         (input, context) => {
             if (Array.isArray(input)) {
                 let errors = [];
-                const output = [];
                 for (const key in input) {
                     const validation = of.validate(input[key], [...context, { input: input[key], key, type: of }]);
                     if ((0, either_1.isLeft)(validation)) {
                         errors = [...errors, ...validation.left];
                     }
-                    if ((0, either_1.isRight)(validation)) {
-                        output[key] = validation.right;
-                    }
                 }
-                return errors.length > 0 ? this.left(errors) : this.right(output);
+                return errors.length > 0 ? this.left(errors) : this.right(input);
             }
             return this.left([{ context, input }]);
         }, () => {
