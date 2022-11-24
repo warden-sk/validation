@@ -3,9 +3,9 @@
  */
 
 import type { Mixed, OutputOf, TypeOf, ValidationError } from '../types';
-import { isLeft, isRight } from '../either';
 import Type from '../helpers/Type';
 import errorMessages from '../helpers/errorMessages';
+import { isLeft } from '../either';
 
 class ArrayType<Of extends Mixed> extends Type<TypeOf<Of>[], OutputOf<Of>[], unknown> {
   constructor(readonly of: Of) {

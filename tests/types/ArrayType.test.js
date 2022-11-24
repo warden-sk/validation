@@ -28,7 +28,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const t = __importStar(require("../.."));
 const type = t.array(t.string);
-test('ArrayType.decode (left)', () => {
+test('ArrayType.decode (right)', () => {
     expect(type.decode(['Marek', 'Kobida'])).toStrictEqual({
         $: 'Right',
         right: ['Marek', 'Kobida'],
@@ -38,7 +38,7 @@ test('ArrayType.decode (left)', () => {
         right: [],
     });
 });
-test('ArrayType.decode (right)', () => {
+test('ArrayType.decode (left)', () => {
     expect(type.decode(0)).toStrictEqual({
         $: 'Left',
         left: [

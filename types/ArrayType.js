@@ -6,9 +6,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const either_1 = require("../either");
 const Type_1 = __importDefault(require("../helpers/Type"));
 const errorMessages_1 = __importDefault(require("../helpers/errorMessages"));
+const either_1 = require("../either");
 class ArrayType extends Type_1.default {
     of;
     constructor(of) {
